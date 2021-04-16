@@ -19,7 +19,7 @@
                     "id": "ec7736ee-f8dc-492a-a51e-7cc7a62d42c5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Look",
@@ -35,7 +35,7 @@
                     "id": "be006128-8d66-438e-a917-0293c4d832da",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Heavy",
@@ -43,7 +43,7 @@
                     "id": "b581f7dd-ad0e-4ad9-8cf1-dddecf563573",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Dash",
@@ -51,7 +51,7 @@
                     "id": "822854ff-b653-4ea9-81b4-cba9e84e63b7",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Teleport",
@@ -59,7 +59,7 @@
                     "id": "3c57b538-81c4-494f-9a61-17edbb1657e3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Aim",
@@ -68,6 +68,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Reset Level",
+                    "type": "Button",
+                    "id": "8d474c7d-e679-496d-be9c-f51afaa98f88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
                 }
             ],
             "bindings": [
@@ -453,6 +461,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dfef095-2420-4254-9af7-f46cf5fc89a6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Reset Level",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

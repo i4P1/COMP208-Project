@@ -123,6 +123,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &348464979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348464980}
+  - component: {fileID: 348464981}
+  m_Layer: 0
+  m_Name: Game Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &348464980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348464979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &348464981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348464979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ca42a7c50d6fa4da88e0d9c44211f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +420,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1287290464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1287290466}
+  - component: {fileID: 1287290465}
+  m_Layer: 0
+  m_Name: Combo Counter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1287290465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287290464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1182832b6c9405b4cbd662af2979e3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1287290466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287290464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1530600809
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +477,7 @@ GameObject:
   - component: {fileID: 1530600813}
   - component: {fileID: 1530600814}
   - component: {fileID: 1530600815}
+  - component: {fileID: 1530600816}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -410,15 +497,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35de114a552b1e44c81a4ab995950374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayer: 3
-  playerLayer: 6
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   speed: 10
   jumpSpeed: 40
-  dashSpeed: 40
-  dashDuration: 0.5
-  dashCooldown: 2
+  dashSpeed: 150
+  dashDuration: 0.1
+  dashCooldown: 0
   teleportDistance: 10
-  teleportCooldown: 4
+  teleportCooldown: 0
 --- !u!212 &1530600811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -557,11 +648,35 @@ MonoBehaviour:
     m_ActionId: 2ccab851-4d6b-4da4-91fe-95edb4616ece
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1530600816}
+        m_TargetAssemblyTypeName: Attacks, Assembly-CSharp
+        m_MethodName: OnLight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: be006128-8d66-438e-a917-0293c4d832da
     m_ActionName: Player/Light[/Keyboard/z,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1530600816}
+        m_TargetAssemblyTypeName: Attacks, Assembly-CSharp
+        m_MethodName: OnHeavy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b581f7dd-ad0e-4ad9-8cf1-dddecf563573
     m_ActionName: Player/Heavy[/Keyboard/x,/Mouse/rightButton]
   - m_PersistentCalls:
@@ -640,6 +755,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f864a6ed-c6b3-4b00-9bfa-e7523e0dab8d
     m_ActionName: Player/Aim[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8d474c7d-e679-496d-be9c-f51afaa98f88
+    m_ActionName: Player/Reset Level[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -671,3 +790,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &1530600816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530600809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1d7489ff5c45e428c4b7330761c7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light_time: {x: 0.5, y: 1}
+  heavy_time: {x: 0.5, y: 1}
+  prefabsDamage:
+  - {fileID: 3983796090266319822, guid: 1808e259063ccc64ca8f703bd87ffaaa, type: 3}
+  - {fileID: 3983796090266319822, guid: 1808e259063ccc64ca8f703bd87ffaaa, type: 3}
+  - {fileID: 3983796090266319822, guid: 4e0758b795381fd46a2c193bf807f6c8, type: 3}
+  prefabsDeflect:
+  - {fileID: 3983796090266319822, guid: 36d81aeed3dffe345bd50523141d3bbd, type: 3}
+  - {fileID: 3983796090266319822, guid: 36d81aeed3dffe345bd50523141d3bbd, type: 3}
+  - {fileID: 3983796090266319822, guid: f6a5dc1cdf7a93e49bab5309cfe39105, type: 3}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  projectileLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  comboCounter: {fileID: 1287290465}
