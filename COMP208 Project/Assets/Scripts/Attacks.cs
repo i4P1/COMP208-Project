@@ -7,7 +7,7 @@ public class Attacks : MonoBehaviour
 {
     #region VariableSetting
     /// <summary>
-    /// Locks the attack so that no other attack can start
+    /// The list of upcoming attacks
     /// </summary>
     AttackList?[] attackQue;
     /// <summary>
@@ -73,20 +73,29 @@ public class Attacks : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is the function that enacts the actual light attack.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator light1() {
         //Call the animator
-        yield return new WaitForSeconds(light_time.x);
-
-        
-        List<Enemy> collidedCreatures; //TODO Get the correct component
-        List<Projectile> collidedBullets; //TODO Get the correct component
-        DamageHitbox hitboxDamage = Instantiate(prefabsDamage[0]).GetComponent<DamageHitbox>();
-        DamageHitbox hitboxDeflect = Instantiate(prefabsDeflect[0]).GetComponent<DamageHitbox>();
-        int totalTime = 0;
+        queCycle();
+        LockAttack(light_time.x + (light_time.y/2), false, false);
+        yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
+        List<Enemy> collidedCreatures; 
+        List<Projectile> collidedBullets; 
+        Hitbox hitboxDamage = Instantiate(prefabsDamage[0]).GetComponent<Hitbox>();
+        Hitbox hitboxDeflect = Instantiate(prefabsDeflect[0]).GetComponent<Hitbox>();
+        hitboxDamage.transform.parent = transform;
+        hitboxDeflect.transform.parent = transform;
+        hitboxDamage.setPosAuto(true);
+        hitboxDeflect.setPosAuto(true);
+        float totalTime = 0;
 
         collidedCreatures = getEnemies(hitboxDamage.collidedObjects(enemyLayerMask));
-        collidedBullets = getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask));
+        collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
         foreach(Enemy enemy in collidedCreatures) {
+            Debug.Log(enemy.gameObject);
             //Deal damage
         }
         foreach(Projectile projectile in collidedBullets) {
@@ -95,41 +104,129 @@ public class Attacks : MonoBehaviour
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
         yield return new WaitForEndOfFrame();
 
-
-
-        while(totalTime >= light_time.y) {
-            List<Enemy> tempEnemies = newEnemies(collidedCreatures, getEnemies(hitboxDamage.collidedObjects(enemyLayerMask)));
-            List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask)));
-            collidedCreatures.AddRange(tempEnemies);
-            collidedBullets.AddRange(tempProjectiles);
+        while(totalTime <= light_time.y) { //Check how long has passed
+            totalTime += Time.deltaTime; //Increase the time for the while loop.
+            //Debug.Log(Time.deltaTime + ":" + totalTime + ":" + light_time.y);
+            List<Enemy> tempEnemies = newEnemies(collidedCreatures, getEnemies(hitboxDamage.collidedObjects(enemyLayerMask))); //Temparory list of the new un-checked enemies
+            List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
+            collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
+            collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Enemy enemy in tempEnemies) {
+                Debug.Log(enemy.gameObject);
                 //Deal damage
             }
             foreach(Projectile projectile in tempProjectiles) {
                 //Deal damage
             }
-            comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
-            yield return new WaitForEndOfFrame();
+            comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
+            yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }
-
-        //Increase Combo Counter
-
+        Destroy(hitboxDamage.gameObject);
+        Destroy(hitboxDeflect.gameObject);
     }
 
     IEnumerator light2() {
         //Call the animator
-        yield return new WaitForSeconds(light_time.x);
-        DamageHitbox hitboxDamage = Instantiate(prefabsDamage[1]).GetComponent<DamageHitbox>();
-        GameObject hitboxDeflect = Instantiate(prefabsDeflect[1]);
-        //Increase Combo Counter
+        queCycle();
+        LockAttack(light_time.x + (light_time.y / 2), false, false);
+        yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
+        List<Enemy> collidedCreatures;
+        List<Projectile> collidedBullets;
+        Hitbox hitboxDamage = Instantiate(prefabsDamage[1]).GetComponent<Hitbox>();
+        Hitbox hitboxDeflect = Instantiate(prefabsDeflect[1]).GetComponent<Hitbox>();
+        hitboxDamage.transform.parent = transform;
+        hitboxDeflect.transform.parent = transform;
+        hitboxDamage.setPosAuto(true);
+        hitboxDeflect.setPosAuto(true);
+        float totalTime = 0;
+
+        collidedCreatures = getEnemies(hitboxDamage.collidedObjects(enemyLayerMask));
+        collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
+        foreach(Enemy enemy in collidedCreatures) {
+            Debug.Log(enemy.gameObject);
+            //Deal damage
+        }
+        foreach(Projectile projectile in collidedBullets) {
+            Debug.Log(projectile.gameObject);
+            //Deflect Projectile
+        }
+        comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
+        yield return new WaitForEndOfFrame();
+
+        while(totalTime <= light_time.y) { //Check how long has passed
+            totalTime += Time.deltaTime; //Increase the time for the while loop.
+            //Debug.Log(Time.deltaTime + ":" + totalTime + ":" + light_time.y);
+            List<Enemy> tempEnemies = newEnemies(collidedCreatures, getEnemies(hitboxDamage.collidedObjects(enemyLayerMask))); //Temparory list of the new un-checked enemies
+            List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
+            collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
+            collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
+            foreach(Enemy enemy in tempEnemies) {
+                Debug.Log(enemy.gameObject);
+                //Deal damage
+            }
+            foreach(Projectile projectile in tempProjectiles) {
+                Debug.Log(projectile.gameObject);
+                //Deflect Projectile
+            }
+            comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
+            yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
+        }
+        Destroy(hitboxDamage.gameObject);
+        Destroy(hitboxDeflect.gameObject);
     }
 
     IEnumerator heavy() {
         //Call the animator
-        yield return new WaitForSeconds(heavy_time.x);
-        DamageHitbox hitboxDamage = Instantiate(prefabsDamage[1]).GetComponent<DamageHitbox>();
-        GameObject hitboxDeflect = Instantiate(prefabsDeflect[1]);
-        //Reset Combo Counter
+        LockAttack(heavy_time.x + heavy_time.y, false, false);
+        yield return new WaitForSeconds(heavy_time.x); // Wait specified time before starting the attack
+        List<Enemy> collidedCreatures;
+        List<Projectile> collidedBullets;
+        Hitbox hitboxDamage = Instantiate(prefabsDamage[2]).GetComponent<Hitbox>();
+        Hitbox hitboxDeflect = Instantiate(prefabsDeflect[2]).GetComponent<Hitbox>();
+        hitboxDamage.transform.parent = transform;
+        hitboxDeflect.transform.parent = transform;
+        hitboxDamage.setPosAuto(true);
+        hitboxDeflect.setPosAuto(true);
+        float totalTime = 0;
+
+        int combo = comboCounter.getComboCount();
+        comboCounter.updateComboCount(true, true);
+        float finalDamage = combo; //Calculate final damage here
+        float finalHealing = combo; //Calculate final healing here
+
+        collidedCreatures = getEnemies(hitboxDamage.collidedObjects(enemyLayerMask));
+        collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
+        foreach(Enemy enemy in collidedCreatures) {
+            Debug.Log(enemy.gameObject);
+            //Deal damage
+            //Heal player
+        }
+        foreach(Projectile projectile in collidedBullets) {
+            Debug.Log(projectile.gameObject);
+            //Deflect
+        }
+        comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
+        yield return new WaitForEndOfFrame();
+
+        while(totalTime <= heavy_time.y) { //Check how long has passed
+            totalTime += Time.deltaTime; //Increase the time for the while loop.
+            //Debug.Log(Time.deltaTime + ":" + totalTime + ":" + light_time.y);
+            List<Enemy> tempEnemies = newEnemies(collidedCreatures, getEnemies(hitboxDamage.collidedObjects(enemyLayerMask))); //Temparory list of the new un-checked enemies
+            List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
+            collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
+            collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
+            foreach(Enemy enemy in tempEnemies) {
+                Debug.Log(enemy.gameObject);
+                //Deal damage
+            }
+            foreach(Projectile projectile in tempProjectiles) {
+                //Deal damage
+            }
+            yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
+        }
+        queCycle();
+        Destroy(hitboxDamage.gameObject);
+        Destroy(hitboxDeflect.gameObject);
     }
 
     #region Helper Functions
@@ -153,9 +250,15 @@ public class Attacks : MonoBehaviour
     private List<Enemy> getEnemies(Collider2D[] colliders) {
         List<Enemy> enemies = new List<Enemy>();
         foreach(Collider2D c in colliders) {
-            enemies.Add(c.gameObject.GetComponent<Enemy>());
+            if(c.GetComponent<Enemy>() != null) enemies.Add(c.GetComponent<Enemy>());
         }
         return enemies;
+    }
+
+    IEnumerator lockAttackCR(float waitTime) {
+        attackLock = true;
+        yield return new WaitForSeconds(waitTime);
+        attackLock = false;
     }
 
     /// <summary>
@@ -166,16 +269,11 @@ public class Attacks : MonoBehaviour
     private List<Projectile> getProjectiles(Collider2D[] colliders) {
         List<Projectile> projectiles = new List<Projectile>();
         foreach(Collider2D c in colliders) {
-            projectiles.Add(c.gameObject.GetComponent<Projectile>());
+            if(c.GetComponent<Projectile>() != null) projectiles.Add(c.GetComponent<Projectile>());
         }
         return projectiles;
     }
 
-    IEnumerator lockAttackCR(float waitTime) {
-        attackLock = true;
-        yield return new WaitForSeconds(waitTime);
-        attackLock = false;
-    }
 
     /// <summary>
     /// </summary>
@@ -190,7 +288,7 @@ public class Attacks : MonoBehaviour
             foreach(Enemy oldItem in oldList) {
                 if(item == oldItem) inOldList = true;
             }
-            if(!inOldList) temp.Add(item);
+            if(!inOldList && item != null) temp.Add(item);
         }
         return temp;
     }
@@ -255,6 +353,7 @@ public class Attacks : MonoBehaviour
 
     #region OnPress Calls
     public void OnLight(InputAction.CallbackContext context) {
+        if(!context.action.triggered) return;
         (AttackList? atk, int i) check = queCheck();
         if(check.atk == AttackList.light1) {
             attackQue[check.i] = AttackList.light1;
@@ -266,9 +365,11 @@ public class Attacks : MonoBehaviour
     }
 
     public void OnHeavy(InputAction.CallbackContext context) {
+        if(!context.action.triggered) return;
         (AttackList? atk, int i) check = queCheck();
         if(check.atk != null) {
             queClear(true);
+            attackQue[check.i] = AttackList.heavy;
         }
         //Call the animator
     }

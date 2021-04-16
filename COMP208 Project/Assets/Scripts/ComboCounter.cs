@@ -7,10 +7,14 @@ public class ComboCounter : MonoBehaviour
     private int comboCount;
     //Animator animator;
 
-    public void updateComboCount(int amount = 1, bool reset = false, bool heavy = false) {
-        if(reset) comboCount = 0;
-        else comboCount += amount;
+    public void updateComboCount(int amount = 1) {
+        comboCount += amount;
 
+        //animator.updateComboCounter(comboCount, heavy)
+    }
+
+    public void updateComboCount(bool reset, bool heavy = false) {
+        comboCount = 0;
         //animator.updateComboCounter(comboCount, heavy)
     }
 
