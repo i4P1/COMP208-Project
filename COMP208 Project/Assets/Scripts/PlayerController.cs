@@ -1,49 +1,134 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
-    PlayerInput input;
-    Animator animator;
-    Rigidbody2D rb;
+    private const int MAX_JUMPS = 1;
 
-    int direction;
-    float speed = 10;
-    Vector2 mobility_direction;
+    [SerializeField]
+    private int         groundLayer = 3;
+    [SerializeField]
+    private int         playerLayer = 6;
+    private float       playerSize;
+    private PlayerInput input;
+    private Animator    animator;
+    private Rigidbody2D rb;
 
-    bool dashing;
-    float dash_start_time;
-    float dash_speed;
-    float dash_duration;
+    private int     direction;
+    private int     jumpsLeft = MAX_JUMPS;
+    [SerializeField]
+    private float   speed     = 10;
+    [SerializeField]
+    private float   jumpSpeed = 40;
+    private float   distToGround;
 
-    bool teleporting;
-    float teleport_distance;
-    float step;
+    private bool    dashing       = false;
+    private float   dashStartTime;
+    [SerializeField]
+    private float   dashSpeed     = 40;
+    [SerializeField]
+    private float   dashDuration  = 0.5f;
+    [SerializeField]
+    private float   dashCooldown  = 2;
+    private Vector2 dashDirection;
+
+    private float teleportStartTime;
+    [SerializeField]
+    private float teleportDistance  = 10;
+    [SerializeField]
+    private float teleportCooldown  = 4;
+    private float step              = 0.1f;
 
     // Start is called before the first frame update
-    void Start() {
-        rb    = GetComponent<Rigidbody2D>();
-        input = GetComponent<PlayerInput>();
+    private void Start() {
+        Vector3 colliderExtents = GetComponent<BoxCollider2D>().bounds.extents;
+
+        rb           = GetComponent<Rigidbody2D>();
+        input        = GetComponent<PlayerInput>();
+        distToGround = colliderExtents.y;
+        playerSize   = Math.Max(colliderExtents.x, colliderExtents.y);
+
+        teleportStartTime = -teleportCooldown;
+        dashStartTime     = -dashCooldown;
     }
 
     // Update is called once per frame
-    void Update() {
-        float new_y = rb.position.x + (input.actions["Move"].ReadValue<float>() * speed * Time.deltaTime);
-        rb.position = new Vector2(new_y, rb.position.y);
+    private void Update() {
+        // Stop dashing after its duration
+        if ((Time.time - dashStartTime) > dashDuration) {
+            dashing = false;
+        }
+
+        // Set the player's speed
+        if (dashing) {
+            rb.velocity = dashDirection.normalized * dashSpeed;
+        } else {
+            float xVel  = input.actions["Move"].ReadValue<float>() * speed;
+            rb.velocity = new Vector2(xVel, rb.velocity.y);
+        }
+    }
+
+    // Checks if the player is touching the ground
+    private bool Grounded() {
+        return Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.1f, 1 << groundLayer);
+    }
+
+    private void Jump() {
+        // Sets the y velocity to the jump speed
+        rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        
+        if (context.action.triggered) {
+            bool canJump = false;
+
+            // Resets the jumps left and lets the player jump if they're grounded
+            if (Grounded()) {
+                jumpsLeft = MAX_JUMPS;
+                canJump   = true;
+            } // Lets the player jump if they have jumps left and decrements it
+            else if (jumpsLeft-- > 0) {
+                canJump = true;
+            }
+
+            if (canJump) {
+                Jump();
+            }
+        }
     }
 
-    public void OnCrouch(InputAction.CallbackContext context) {
-        
+    public void OnDash(InputAction.CallbackContext context) {
+        // If we can dash we set the relevent variables
+        if (context.action.triggered && (Time.time - dashStartTime) > dashCooldown) {
+            dashStartTime = Time.time;
+            dashing       = true;
+            dashDirection = GetComponent<PlayerInput>().actions["Aim"].ReadValue<Vector2>();
+        }
     }
 
-    public void OnLight(InputAction.CallbackContext context) {
-        
+    private void Teleport() {
+        Vector2 direction   = GetComponent<PlayerInput>().actions["Aim"].ReadValue<Vector2>();
+        Vector2 origin      = new Vector2(transform.position.x, transform.position.y);
+        Vector2 destination = origin + (teleportDistance * direction);
+
+        for (float distance = teleportDistance; distance > 0; distance -= step) {
+            destination = origin + (direction * distance);
+
+            // If the destination is empty then break from the loop to move there
+            if (Physics2D.CircleCast(destination, playerSize, Vector2.up, 0, ~(1 << playerLayer)).collider == null) {
+                break;
+            }
+        }
+
+        transform.position = destination;
+        Debug.Log("Teleported to " + destination + "!");
     }
 
-    public void OnHeavy(InputAction.CallbackContext context) {
-        
+    public void OnTeleport(InputAction.CallbackContext context) {
+        // If we can teleport we set the relevent variables and call the teleport function
+        if (context.action.triggered && (Time.time - teleportStartTime) > teleportCooldown) {
+            teleportStartTime = Time.time;
+            Teleport();
+        }
     }
 }
