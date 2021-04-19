@@ -6,9 +6,9 @@ public class PlayerController : MonoBehaviour {
     private const int MAX_JUMPS = 1;
 
     [SerializeField]
-    private int         groundLayer = 3;
+    private LayerMask   groundLayerMask;
     [SerializeField]
-    private int         playerLayer = 6;
+    private LayerMask   playerLayerMask;
     private float       playerSize;
     private PlayerInput input;
     private Animator    animator;
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
 
     // Checks if the player is touching the ground
     private bool Grounded() {
-        return Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.1f, 1 << groundLayer);
+        return Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.1f, groundLayerMask);
     }
 
     private void Jump() {
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour {
             destination = origin + (direction * distance);
 
             // If the destination is empty then break from the loop to move there
-            if (Physics2D.CircleCast(destination, playerSize, Vector2.up, 0, ~(1 << playerLayer)).collider == null) {
+            if (Physics2D.CircleCast(destination, playerSize, Vector2.up, 0, ~playerLayerMask).collider == null) {
                 break;
             }
         }
