@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5008809865576594704}
   - component: {fileID: 5008809865576594707}
   - component: {fileID: 5008809865576594706}
+  - component: {fileID: 6063670456603414237}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5008809865576594708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,11 +108,11 @@ MonoBehaviour:
     m_Bits: 64
   speed: 10
   jumpSpeed: 40
-  dashSpeed: 40
-  dashDuration: 0.5
-  dashCooldown: 2
+  dashSpeed: 100
+  dashDuration: 0.1
+  dashCooldown: 0
   teleportDistance: 10
-  teleportCooldown: 4
+  teleportCooldown: 0
 --- !u!50 &5008809865576594704
 Rigidbody2D:
   serializedVersion: 4
@@ -184,11 +185,35 @@ MonoBehaviour:
     m_ActionId: 2ccab851-4d6b-4da4-91fe-95edb4616ece
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6063670456603414237}
+        m_TargetAssemblyTypeName: Attacks, Assembly-CSharp
+        m_MethodName: OnLight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: be006128-8d66-438e-a917-0293c4d832da
     m_ActionName: Player/Light[/Keyboard/z,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6063670456603414237}
+        m_TargetAssemblyTypeName: Attacks, Assembly-CSharp
+        m_MethodName: OnHeavy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b581f7dd-ad0e-4ad9-8cf1-dddecf563573
     m_ActionName: Player/Heavy[/Keyboard/x,/Mouse/rightButton]
   - m_PersistentCalls:
@@ -298,3 +323,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &6063670456603414237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008809865576594708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1d7489ff5c45e428c4b7330761c7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light_time: {x: 0.5, y: 1}
+  heavy_time: {x: 0.5, y: 1}
+  prefabsDamage:
+  - {fileID: 3983796090266319822, guid: 1808e259063ccc64ca8f703bd87ffaaa, type: 3}
+  - {fileID: 3983796090266319822, guid: 1808e259063ccc64ca8f703bd87ffaaa, type: 3}
+  - {fileID: 3983796090266319822, guid: 4e0758b795381fd46a2c193bf807f6c8, type: 3}
+  prefabsDeflect:
+  - {fileID: 3983796090266319822, guid: 36d81aeed3dffe345bd50523141d3bbd, type: 3}
+  - {fileID: 3983796090266319822, guid: 36d81aeed3dffe345bd50523141d3bbd, type: 3}
+  - {fileID: 3983796090266319822, guid: f6a5dc1cdf7a93e49bab5309cfe39105, type: 3}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  projectileLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  comboCounter: {fileID: 0}
