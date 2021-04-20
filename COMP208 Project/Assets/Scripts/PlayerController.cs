@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
+        // Get the speed of player
+        float xVel = input.actions["Move"].ReadValue<float>() * speed;
+
         // Stop dashing after its duration
         if ((Time.time - dashStartTime) > dashDuration) {
             dashing = false;
@@ -63,13 +66,23 @@ public class PlayerController : MonoBehaviour {
         // Set the player's speed
         if (dashing) {
             rb.velocity = dashDirection.normalized * dashSpeed;
-        } else {
-            float xVel  = input.actions["Move"].ReadValue<float>() * speed;
+
+            animator.SetFloat("speed", dashSpeed);
+        }
+        else {
+            //float xVel = input.actions["Move"].ReadValue<float>() * speed;
             rb.velocity = new Vector2(xVel, rb.velocity.y);
+
+            animator.SetFloat("speed", Mathf.Abs(xVel));
         }
 
-        // update the speed of player
-        animator.SetFloat("speed", Mathf.Abs(input.actions["Move"].ReadValue<float>() * speed));
+        // Animation Part
+        if (rb.velocity.y > 0) {
+            animator.SetBool("jump", true);
+        }
+        else {
+            animator.SetBool("jump", false);
+        }
     }
 
     // Checks if the player is touching the ground
