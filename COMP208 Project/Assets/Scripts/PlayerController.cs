@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour {
         input        = GetComponent<PlayerInput>();
         distToGround = colliderExtents.y;
         playerSize   = Math.Max(colliderExtents.x, colliderExtents.y);
+        animator     = GetComponent<Animator>();
 
         teleportStartTime = -teleportCooldown;
         dashStartTime     = -dashCooldown;
