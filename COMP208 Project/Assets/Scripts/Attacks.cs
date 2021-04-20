@@ -44,6 +44,8 @@ public class Attacks : MonoBehaviour
     /// Layermask for the projectiles
     /// </summary>
     public LayerMask projectileLayerMask = 6;
+    Hitbox hitboxDamage;
+    Hitbox hitboxDeflect;
     [SerializeField]
     ComboCounter comboCounter;
     //Player player;
@@ -59,12 +61,15 @@ public class Attacks : MonoBehaviour
         if(!attackLock) {
             switch(attackQue[0]) {
                 case AttackList.light1:
+                    if(activeAttack != null) StopCoroutine(activeAttack);
                     activeAttack = StartCoroutine(light1());
                     break;
                 case AttackList.light2:
+                    if(activeAttack != null) StopCoroutine(activeAttack);
                     activeAttack = StartCoroutine(light2());
                     break;
                 case AttackList.heavy:
+                    if(activeAttack != null) StopCoroutine(activeAttack);
                     activeAttack = StartCoroutine(heavy());
                     break;
                 default:
@@ -74,7 +79,7 @@ public class Attacks : MonoBehaviour
     }
 
     /// <summary>
-    /// This is the function that enacts the actual light attack.
+    /// This is the function that enacts the actual light1 attack.
     /// </summary>
     /// <returns></returns>
     IEnumerator light1() {
@@ -82,10 +87,12 @@ public class Attacks : MonoBehaviour
         queCycle();
         LockAttack(light_time.x + (light_time.y/2), false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
+        if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
+        if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
         List<Enemy> collidedCreatures; 
         List<Projectile> collidedBullets; 
-        Hitbox hitboxDamage = Instantiate(prefabsDamage[0]).GetComponent<Hitbox>();
-        Hitbox hitboxDeflect = Instantiate(prefabsDeflect[0]).GetComponent<Hitbox>();
+        hitboxDamage = Instantiate(prefabsDamage[0]).GetComponent<Hitbox>();
+        hitboxDeflect = Instantiate(prefabsDeflect[0]).GetComponent<Hitbox>();
         hitboxDamage.transform.parent = transform;
         hitboxDeflect.transform.parent = transform;
         hitboxDamage.setPosAuto(true);
@@ -123,17 +130,24 @@ public class Attacks : MonoBehaviour
         }
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
+        activeAttack = null;
     }
-
+    
+    /// <summary>
+    /// This is the function that enacts the actual light2 attack.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator light2() {
         //Call the animator
         queCycle();
         LockAttack(light_time.x + (light_time.y / 2), false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
+        if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
+        if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
         List<Enemy> collidedCreatures;
         List<Projectile> collidedBullets;
-        Hitbox hitboxDamage = Instantiate(prefabsDamage[1]).GetComponent<Hitbox>();
-        Hitbox hitboxDeflect = Instantiate(prefabsDeflect[1]).GetComponent<Hitbox>();
+        hitboxDamage = Instantiate(prefabsDamage[1]).GetComponent<Hitbox>();
+        hitboxDeflect = Instantiate(prefabsDeflect[1]).GetComponent<Hitbox>();
         hitboxDamage.transform.parent = transform;
         hitboxDeflect.transform.parent = transform;
         hitboxDamage.setPosAuto(true);
@@ -173,16 +187,23 @@ public class Attacks : MonoBehaviour
         }
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
+        activeAttack = null;
     }
 
+    /// <summary>
+    /// This is the function that enacts the actual heavy attack.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator heavy() {
         //Call the animator
         LockAttack(heavy_time.x + heavy_time.y, false, false);
         yield return new WaitForSeconds(heavy_time.x); // Wait specified time before starting the attack
+        if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
+        if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
         List<Enemy> collidedCreatures;
         List<Projectile> collidedBullets;
-        Hitbox hitboxDamage = Instantiate(prefabsDamage[2]).GetComponent<Hitbox>();
-        Hitbox hitboxDeflect = Instantiate(prefabsDeflect[2]).GetComponent<Hitbox>();
+        hitboxDamage = Instantiate(prefabsDamage[2]).GetComponent<Hitbox>();
+        hitboxDeflect = Instantiate(prefabsDeflect[2]).GetComponent<Hitbox>();
         hitboxDamage.transform.parent = transform;
         hitboxDeflect.transform.parent = transform;
         hitboxDamage.setPosAuto(true);
@@ -227,6 +248,7 @@ public class Attacks : MonoBehaviour
         queCycle();
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
+        activeAttack = null;
     }
 
     #region Helper Functions
@@ -340,7 +362,7 @@ public class Attacks : MonoBehaviour
     /// </returns>
     private (AttackList? atk, int i) queCheck() {
         if(attackQue[0] == AttackList.heavy) return (null, -1);
-        if(attackQue[1] != null) return (AttackList.heavy, -1);
+        if(attackQue[1] != null) return (AttackList.heavy, 0);
         if(attackQue[1] == null) {
             if(attackQue[0] == null) return (AttackList.light1, 0);
             if(attackQue[0] == AttackList.light1) return (AttackList.light2, 1);

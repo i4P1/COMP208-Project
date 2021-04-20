@@ -6,9 +6,15 @@ public class PlayerController : MonoBehaviour {
     private const int MAX_JUMPS = 1;
 
     [SerializeField]
+<<<<<<< Updated upstream
     private LayerMask   groundLayerMask;
     [SerializeField]
     private LayerMask   playerLayerMask;
+=======
+    private LayerMask         groundLayerMask;
+    [SerializeField]
+    private LayerMask         playerLayerMask;
+>>>>>>> Stashed changes
     private float       playerSize;
     private PlayerInput input;
     private Animator    animator;
@@ -53,10 +59,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update() {
+    private void FixedUpdate() {
         // Stop dashing after its duration
-        if ((Time.time - dashStartTime) > dashDuration) {
+        if((Time.time - dashStartTime) > dashDuration && dashing) {
             dashing = false;
+            rb.velocity = Vector2.zero;
         }
 
         // Set the player's speed
