@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour {
             float xVel  = input.actions["Move"].ReadValue<float>() * speed;
             rb.velocity = new Vector2(xVel, rb.velocity.y);
         }
+
+        // update the speed of player
+        animator.SetFloat("speed", Mathf.Abs(input.actions["Move"].ReadValue<float>() * speed));
     }
 
     // Checks if the player is touching the ground
