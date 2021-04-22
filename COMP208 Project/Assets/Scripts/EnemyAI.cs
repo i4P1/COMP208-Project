@@ -2,7 +2,6 @@ using UnityEngine;
 using Pathfinding;
 
 public class EnemyAI : MonoBehaviour {
-
     public Transform target;
     public float nextWaypointDistance = 3;
 

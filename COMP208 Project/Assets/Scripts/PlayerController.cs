@@ -28,22 +28,24 @@ public class PlayerController : MonoBehaviour {
     private float   jumpSpeed = 40;
     private float   distToGround;
 
-    private bool    dashing       = false;
+    private bool    dashing      = false;
+    private bool    canDash      = true;
+    [SerializeField]
+    private float   dashSpeed    = 40;
+    [SerializeField]
+    private float   dashDuration = 0.5f;
     private float   dashStartTime;
-    [SerializeField]
-    private float   dashSpeed     = 40;
-    [SerializeField]
-    private float   dashDuration  = 0.5f;
-    [SerializeField]
-    private float   dashCooldown  = 2;
     private Vector2 dashDirection;
 
     private float teleportStartTime;
     [SerializeField]
-    private float teleportDistance  = 10;
+    private float teleportDistance = 10;
+    private float step             = 0.1f;
     [SerializeField]
-    private float teleportCooldown  = 4;
-    private float step              = 0.1f;
+    private float teleportCooldown = 3;
+
+    private float hoverStartTime;
+    private float hoverDuration;
 
     // Start is called before the first frame update
     private void Start() {
@@ -53,12 +55,10 @@ public class PlayerController : MonoBehaviour {
         input        = GetComponent<PlayerInput>();
         distToGround = colliderExtents.y;
         playerSize   = Math.Max(colliderExtents.x, colliderExtents.y);
-
-        teleportStartTime = -teleportCooldown;
-        dashStartTime     = -dashCooldown;
     }
 
     // Update is called once per frame
+<<<<<<< Updated upstream
     private void FixedUpdate() {
         // Stop dashing after its duration
         if((Time.time - dashStartTime) > dashDuration && dashing) {
@@ -69,15 +69,36 @@ public class PlayerController : MonoBehaviour {
         // Set the player's speed
         if (dashing) {
             rb.velocity = dashDirection.normalized * dashSpeed;
+=======
+    private void Update() {
+        if ((Time.time - hoverStartTime) < hoverDuration) {
+            rb.velocity = Vector2.zero;
+>>>>>>> Stashed changes
         } else {
-            float xVel  = input.actions["Move"].ReadValue<float>() * speed;
-            rb.velocity = new Vector2(xVel, rb.velocity.y);
+            // Stop dashing after its duration
+            if ((Time.time - dashStartTime) > dashDuration) {
+                dashing = false;
+            }
+
+            // Set the player's speed
+            if (dashing) {
+                rb.velocity = dashDirection.normalized * dashSpeed;
+            } else {
+                float xVel  = input.actions["Move"].ReadValue<float>() * speed;
+                rb.velocity = new Vector2(xVel, rb.velocity.y);
+            }
         }
     }
 
     // Checks if the player is touching the ground
     private bool Grounded() {
-        return Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.1f, groundLayerMask);
+        bool raycastHit = Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.1f, groundLayerMask);
+
+        if (raycastHit) {
+            canDash = true;
+        }
+
+        return raycastHit;
     }
 
     private void Jump() {
@@ -106,10 +127,11 @@ public class PlayerController : MonoBehaviour {
 
     public void OnDash(InputAction.CallbackContext context) {
         // If we can dash we set the relevent variables
-        if (context.action.triggered && (Time.time - dashStartTime) > dashCooldown) {
+        if (context.action.triggered && canDash) {
             dashStartTime = Time.time;
             dashing       = true;
             dashDirection = GetComponent<PlayerInput>().actions["Aim"].ReadValue<Vector2>();
+            canDash       = false;
         }
     }
 
@@ -133,9 +155,18 @@ public class PlayerController : MonoBehaviour {
 
     public void OnTeleport(InputAction.CallbackContext context) {
         // If we can teleport we set the relevent variables and call the teleport function
-        if (context.action.triggered && (Time.time - teleportStartTime) > teleportCooldown) {
+        if (context.action.triggered && (teleportStartTime + teleportCooldown) < Time.time) {
             teleportStartTime = Time.time;
             Teleport();
         }
+    }
+
+    public void ResetDash() {
+        canDash = true;
+    }
+
+    public void Hover(float duration) {
+        hoverStartTime = Time.time;
+        hoverDuration  = duration;
     }
 }

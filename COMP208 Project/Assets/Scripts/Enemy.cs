@@ -16,6 +16,6 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Die() {
-        // Kill yourself
+        Destroy(gameObject);
     }
 }
