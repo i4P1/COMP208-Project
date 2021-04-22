@@ -21,9 +21,13 @@ MonoBehaviour:
   m_ShowMode: 4
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Title: Hierarchy
 =======
   m_Title: Game
+>>>>>>> Stashed changes
+=======
+  m_Title: Scene
 >>>>>>> Stashed changes
 =======
   m_Title: Scene
@@ -58,6 +62,7 @@ MonoBehaviour:
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   controlID: 15
 =======
     width: 1536
@@ -66,6 +71,9 @@ MonoBehaviour:
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
   controlID: 74
+>>>>>>> Stashed changes
+=======
+  controlID: 17
 >>>>>>> Stashed changes
 =======
   controlID: 17
@@ -277,6 +285,7 @@ MonoBehaviour:
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   controlID: 16
 =======
     width: 1055
@@ -285,6 +294,9 @@ MonoBehaviour:
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
   controlID: 82
+>>>>>>> Stashed changes
+=======
+  controlID: 111
 >>>>>>> Stashed changes
 =======
   controlID: 111
@@ -315,6 +327,7 @@ MonoBehaviour:
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   controlID: 17
 =======
     width: 1055
@@ -323,6 +336,9 @@ MonoBehaviour:
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
   controlID: 83
+>>>>>>> Stashed changes
+=======
+  controlID: 112
 >>>>>>> Stashed changes
 =======
   controlID: 112
@@ -1171,6 +1187,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_SelectedIDs: ce440000
     m_LastClickedID: 17614
     m_ExpandedIDs: 00000000c444000000ca9a3b
@@ -1178,6 +1195,11 @@ MonoBehaviour:
     m_SelectedIDs: ea420000
     m_LastClickedID: 17130
     m_ExpandedIDs: 00000000da42000000ca9a3b
+>>>>>>> Stashed changes
+=======
+    m_SelectedIDs: d24c0000
+    m_LastClickedID: 19666
+    m_ExpandedIDs: 00000000c44c000000ca9a3b
 >>>>>>> Stashed changes
 =======
     m_SelectedIDs: d24c0000
@@ -1213,9 +1235,13 @@ MonoBehaviour:
     m_LastClickedID: 0
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_ExpandedIDs: 00000000c4440000
 =======
     m_ExpandedIDs: 00000000da420000
+>>>>>>> Stashed changes
+=======
+    m_ExpandedIDs: 00000000c44c0000
 >>>>>>> Stashed changes
 =======
     m_ExpandedIDs: 00000000c44c0000
@@ -1350,6 +1376,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_SelectedIDs: 3afbffff
       m_LastClickedID: -1222
       m_ExpandedIDs: 3cfbffff
@@ -1357,6 +1384,11 @@ MonoBehaviour:
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: c6e7ffffa2faffff96420000
+>>>>>>> Stashed changes
+=======
+      m_SelectedIDs: 624c0000
+      m_LastClickedID: 19554
+      m_ExpandedIDs: 7cf4ffff
 >>>>>>> Stashed changes
 =======
       m_SelectedIDs: 624c0000

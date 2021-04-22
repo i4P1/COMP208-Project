@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private void FixedUpdate() {
         // Stop dashing after its duration
         if((Time.time - dashStartTime) > dashDuration && dashing) {
@@ -69,6 +70,11 @@ public class PlayerController : MonoBehaviour {
         // Set the player's speed
         if (dashing) {
             rb.velocity = dashDirection.normalized * dashSpeed;
+=======
+    private void Update() {
+        if ((Time.time - hoverStartTime) < hoverDuration) {
+            rb.velocity = Vector2.zero;
+>>>>>>> Stashed changes
 =======
     private void Update() {
         if ((Time.time - hoverStartTime) < hoverDuration) {
