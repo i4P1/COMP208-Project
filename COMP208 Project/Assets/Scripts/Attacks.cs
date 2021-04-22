@@ -43,7 +43,7 @@ public class Attacks : MonoBehaviour
     /// <summary>
     /// Layermask for the projectiles
     /// </summary>
-    public LayerMask projectileLayerMask = 6;
+    public LayerMask projectileLayerMask = 8;
     Hitbox hitboxDamage;
     Hitbox hitboxDeflect;
     [SerializeField]

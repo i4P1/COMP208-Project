@@ -13,9 +13,10 @@ public class Enemy : MonoBehaviour {
         if (health <= 0) {
             Die();
         }
+        //Call animator if not dead
     }
 
     private void Die() {
-        // Kill yourself
+        // Kill yourself -> call animator
     }
 }

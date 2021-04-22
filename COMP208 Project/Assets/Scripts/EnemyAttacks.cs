@@ -1,0 +1,191 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyAttacks : MonoBehaviour
+{
+    public GameObject prefabDamage;
+    public GameObject prefabDeflect;
+
+    /// <summary>
+    /// Layermask for the enemies
+    /// </summary>
+    public LayerMask playerLayerMask = 6;
+    /// <summary>
+    /// Layermask for the projectiles
+    /// </summary>
+    public LayerMask projectileLayerMask = 9;
+    /// <summary>
+    /// x == delay until damage starts || y == duration of damage
+    /// </summary>
+    public Vector2 attackTime;
+
+    Hitbox hitboxDamage;
+    Hitbox hitboxDeflect;
+
+    public Coroutine startAttack(float damage) {
+        return StartCoroutine(attack(damage));
+    }
+
+    public void stopAttack(Coroutine atk) {
+        if(atk == null) return;
+        StopCoroutine(atk);
+        Destroy(hitboxDamage.gameObject);
+        Destroy(hitboxDeflect.gameObject);
+    }
+
+    IEnumerator attack(float damage) {
+        //Call the animator
+        bool deflect;
+        if(prefabDeflect != null) deflect = true;
+        else deflect = false;
+        yield return new WaitForSeconds(attackTime.x); // Wait specified time before starting the attack
+        if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
+        if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
+        List<PlayerController> collidedCreatures;
+        List<Projectile> collidedBullets;
+        hitboxDamage = Instantiate(prefabDamage).GetComponent<Hitbox>();
+        hitboxDeflect = Instantiate(prefabDeflect).GetComponent<Hitbox>();
+        hitboxDamage.transform.parent = transform;
+        hitboxDeflect.transform.parent = transform;
+        hitboxDamage.setPosAuto(true);
+        hitboxDeflect.setPosAuto(true);
+        float totalTime = 0;
+
+        collidedCreatures = getPlayers(hitboxDamage.collidedObjects(playerLayerMask));
+        collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
+        foreach(PlayerController pl in collidedCreatures) {
+            Debug.Log(pl.gameObject);
+            //Deal damage
+        }
+        if(deflect) {
+            foreach(Projectile projectile in collidedBullets) {
+                //Deal damage
+            }
+        }
+        yield return new WaitForEndOfFrame();
+
+        while(totalTime <= attackTime.y) { //Check how long has passed
+            totalTime += Time.deltaTime; //Increase the time for the while loop.
+            //Debug.Log(Time.deltaTime + ":" + totalTime + ":" + light_time.y);
+            List<PlayerController> tempEnemies = newPlayers(collidedCreatures, getPlayers(hitboxDamage.collidedObjects(playerLayerMask))); //Temparory list of the new un-checked enemies
+            List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
+            collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
+            collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
+            foreach(PlayerController pl in tempEnemies) {
+                Debug.Log(pl.gameObject);
+                //Deal damage
+            }
+            if(deflect) {
+                foreach(Projectile projectile in tempProjectiles) {
+                    //Deal damage
+                }
+            }
+            yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
+        }
+        Destroy(hitboxDamage.gameObject);
+        Destroy(hitboxDeflect.gameObject);
+    }
+
+    #region helper functions
+    /// <summary>
+    /// Set the prefab for damage, and the prefab for deflection if one exists.
+    /// </summary>
+    /// <param name="preDam">The damage prefab</param>
+    /// <param name="preDef">The deflection prefab</param>
+    public void setPrefabs(GameObject preDam, GameObject preDef = null) {
+        prefabDamage = preDam;
+        prefabDeflect = preDef;
+    }
+
+    #region setAttackTime
+    /// <summary>
+    /// Set the attack time to the vector given
+    /// </summary>
+    /// <param name="vec">x = damage delay || y = damage duration</param>
+    public void setAttackTime(Vector2 vec) {
+        attackTime = vec;
+    }
+
+    /// <summary>
+    /// Set the attack time to the 2 floats
+    /// </summary>
+    /// <param name="x">damage delay</param>
+    /// <param name="y">damage duration</param>
+    public void setAttackTime(float x, float y) {
+        attackTime = new Vector2(x, y);
+    }
+
+    /// <summary>
+    /// Set the damage duration to the vector given, and the delay to 0.
+    /// </summary>
+    /// <param name="y">damage duration</param>
+    public void setAttackTime(float y) {
+        attackTime = new Vector2(0f, y);
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Takes a list of colliders and returns the associated enemy scripts
+    /// </summary>
+    /// <param name="colliders">The collider list</param>
+    /// <returns>List of of the associated enemy scripts</returns>
+    private List<PlayerController> getPlayers(Collider2D[] colliders) {
+        List<PlayerController> enemies = new List<PlayerController>();
+        foreach(Collider2D c in colliders) {
+            if(c.GetComponent<PlayerController>() != null) enemies.Add(c.GetComponent<PlayerController>());
+        }
+        return enemies;
+    }
+
+    /// <summary>
+    /// Takes a list of colliders and returns the associated projectile scripts
+    /// </summary>
+    /// <param name="colliders">The collider list</param>
+    /// <returns>List of of the associated projectile scripts</returns>
+    private List<Projectile> getProjectiles(Collider2D[] colliders) {
+        List<Projectile> projectiles = new List<Projectile>();
+        foreach(Collider2D c in colliders) {
+            if(c.GetComponent<Projectile>() != null) projectiles.Add(c.GetComponent<Projectile>());
+        }
+        return projectiles;
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="oldList">The old list</param>
+    /// <param name="newList">The new items</param>
+    /// <returns>Returns the enemies in the new list but not in the old list</returns>
+    private List<PlayerController> newPlayers(List<PlayerController> oldList, List<PlayerController> newList) {
+        List<PlayerController> temp = new List<PlayerController>();
+        bool inOldList;
+        foreach(PlayerController item in newList) {
+            inOldList = false;
+            foreach(PlayerController oldItem in oldList) {
+                if(item == oldItem) inOldList = true;
+            }
+            if(!inOldList && item != null) temp.Add(item);
+        }
+        return temp;
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="oldList">The old list</param>
+    /// <param name="newList">The new items</param>
+    /// <returns>Returns the projectiles in the new list but not in the old list</returns>
+    private List<Projectile> newProjectiles(List<Projectile> oldList, List<Projectile> newList) {
+        List<Projectile> temp = new List<Projectile>();
+        bool inOldList;
+        foreach(Projectile item in newList) {
+            inOldList = false;
+            foreach(Projectile oldItem in oldList) {
+                if(item == oldItem) inOldList = true;
+            }
+            if(!inOldList) temp.Add(item);
+        }
+        return temp;
+    }
+    #endregion
+}
