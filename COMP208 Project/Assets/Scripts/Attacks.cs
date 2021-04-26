@@ -47,6 +47,8 @@ public class Attacks : MonoBehaviour
     [SerializeField]
     ComboCounter comboCounter;
     //Player player;
+    private Animator    animator;
+    private Rigidbody2D rb;
     #endregion
 
     private void Start() {
@@ -79,6 +81,7 @@ public class Attacks : MonoBehaviour
     /// <returns></returns>
     IEnumerator light1() {
         //Call the animator
+        animator.SetBool("lightAttack01",true);
         queCycle();
         LockAttack(light_time.x + (light_time.y/2), false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack

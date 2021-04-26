@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/release' branch; Version is '2020.3.1f1 (77a89f25062f) revision 7841951'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Education; OS build 19042.928; Version 2009; 64bit' Language: 'zh' Physical Memory: 16300 MB
+OS: 'Windows 10 Education; OS build 19042.906; Version 2009; 64bit' Language: 'zh' Physical Memory: 16300 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -15,11 +15,11 @@ C:/Users/suzut/Documents/GitHub/COMP208-Project/COMP208 Project
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-13779
+13909
 Successfully changed project path to: C:/Users/suzut/Documents/GitHub/COMP208-Project/COMP208 Project
 C:/Users/suzut/Documents/GitHub/COMP208-Project/COMP208 Project
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 27.54 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 27.64 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.1f1 (77a89f25062f)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/Resources/UnitySubsystems
@@ -35,80 +35,107 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56344
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56260
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001265 seconds.
+Registered in 0.001126 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 29.77 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 29.41 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.691 seconds
+- Completed reload, in  0.627 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000727 seconds.
+Registered in 0.000572 seconds.
 Begin MonoManager ReloadAssembly
+Symbol file data-000002290D6589F0 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022909124710 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D48F030 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022908F2A900 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022908EF3AB0 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\PsdPlugin.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D2D4020 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290908DD00 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D68FA00 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\UnityEngine.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022909074050 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D280080 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D2ADA90 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\UnityEditor.TestRunner.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D48F030 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022908EF3AB0 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022908EF3AB0 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022908F2A900 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000022908FCCFA0 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290908DD00 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.Rider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290E106030 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.Mathematics.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D697A10 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D72B900 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290DF02670 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000229091D5640 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290DC96010 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D3C6030 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290DFF2030 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D4CEE00 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290DD8AE20 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290D697A10 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002290DCB0E20 doesn't match image C:\Users\suzut\Documents\GitHub\COMP208-Project\COMP208 Project\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll
+Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 30.63 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 28.38 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.628 seconds
+- Completed reload, in  0.580 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.34 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2111 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 95.5 MB.
 System memory in use after: 95.6 MB.
 
 Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2561.
-Total: 1.726600 ms (FindLiveObjects: 0.330000 ms CreateObjectMapping: 0.052100 ms MarkObjects: 1.296500 ms  DeleteObjects: 0.047200 ms)
+Total: 1.584900 ms (FindLiveObjects: 0.169100 ms CreateObjectMapping: 0.050500 ms MarkObjects: 1.323700 ms  DeleteObjects: 0.041100 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Scripts/PlayerController.cs
-  artifactKey: Guid(35de114a552b1e44c81a4ab995950374) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/PlayerController.cs using Guid(35de114a552b1e44c81a4ab995950374) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93b792f262445ea38b9a1b9bed445c89') in 0.016040 seconds
-  Import took 0.018471 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001234 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.35 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.551 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.29 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2102 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 95.4 MB.
-System memory in use after: 95.5 MB.
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 2564.
-Total: 1.608300 ms (FindLiveObjects: 0.146200 ms CreateObjectMapping: 0.049800 ms MarkObjects: 1.402100 ms  DeleteObjects: 0.009700 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 841.584413 seconds.
-  path: Assets/Scripts/PlayerController.cs
-  artifactKey: Guid(35de114a552b1e44c81a4ab995950374) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/PlayerController.cs using Guid(35de114a552b1e44c81a4ab995950374) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c731dcea7dc1f962034adcec23c13001') in 0.003430 seconds
-  Import took 0.005642 seconds .
+  path: Assets/Animation/Player/Player.controller
+  artifactKey: Guid(e481866481a0b034b8956bdde29f7e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/Player/Player.controller using Guid(e481866481a0b034b8956bdde29f7e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb084909a8f918129bde4fc3b993a466') in 0.023187 seconds
+  Import took 0.025546 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
