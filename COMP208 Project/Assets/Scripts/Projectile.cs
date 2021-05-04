@@ -2,61 +2,56 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
     [SerializeField]
-    private LayerMask   playerLayerMask;
+    protected LayerMask   playerLayerMask;
     [SerializeField]
-    private LayerMask   enemyLayerMask;
-    private Rigidbody2D rb;
+    protected LayerMask   enemyLayerMask;
+    protected Rigidbody2D rb;
 
-    private Vector2 direction;
     [SerializeField]
-    private float speed   = 100;
-    private float damage  = 10;
-    private bool  hostile = true;
+    protected Vector2 direction;
+    [SerializeField]
+    protected float speed  {get; set;} = 1;
+    [SerializeField]
+    protected float damage {get; set;} = 10;
+    protected bool  hostile = true;
 
-    public Projectile(Vector2 dir) {
-        direction = dir;
-    }
-
-    public Projectile(Vector2 dir, float spd) {
-        direction = dir;
-        speed     = spd;
-    }
-
-    private void Start() {
+    protected virtual void Start() {
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = speed * direction;
     }
 
     // Checks if a layer is in a layermask (or if two layermasks have any layers in common)
-    private bool CheckLayer(LayerMask mask1, LayerMask mask2) {
+    protected virtual bool CheckLayer(LayerMask mask1, LayerMask mask2) {
         return (mask1 & mask2) > 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    protected virtual void OnCollisionEnter2D(Collision2D other) {
         GameObject target = other.gameObject;
 
         // If the projectile is hitting the player, and if it can damage them.
         if (CheckLayer(target.layer, playerLayerMask) && hostile) {
             target.SendMessage("Damage", damage);
+            Die();
         } // If the projectile is hitting an enemy, and if it can damage them.
         else if (CheckLayer(target.layer, enemyLayerMask) && !hostile) {
             target.SendMessage("Damage", damage);
+            Die();
         } // If it's hitting the wall
         else {
             OnWallHit();
         }
     }
 
-    private void OnWallHit() {
+    protected virtual void OnWallHit() {
         Die();
     }
 
-    private void Die() {
+    protected virtual void Die() {
         Destroy(gameObject);
     }
 
-    public void Deflect() {
+    public virtual void Deflect() {
         direction *= -1;
         rb.velocity = speed * direction;
     }
