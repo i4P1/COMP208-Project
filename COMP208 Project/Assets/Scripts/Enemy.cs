@@ -6,6 +6,11 @@ public interface IMoveable {
 
 public class Enemy : MonoBehaviour {
     private float health;
+    protected bool lockedMovement;
+
+    public void lockMovement(bool state) {
+        lockedMovement = state;
+    }
 
     public void Damage(float amount) {
         health -= amount;

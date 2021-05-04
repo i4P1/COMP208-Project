@@ -20,48 +20,46 @@ public class EnemyAttacks : MonoBehaviour
     /// </summary>
     public Vector2 attackTime;
 
+    bool trackObject;
+
     Hitbox hitboxDamage;
     Hitbox hitboxDeflect;
 
-    public Coroutine startAttack(float damage) {
-        return StartCoroutine(attack(damage));
+    private void FixedUpdate() {
+        if(trackObject && hitboxDamage != null)
+            hitboxDamage.setPosAuto(true); //Change to a proper direction
+        if(trackObject && hitboxDeflect != null)
+            hitboxDeflect.setPosAuto(true); //Change to a proper direction
+    }
+
+    public Coroutine startAttack(float damage, bool track = true) {
+        if(prefabDeflect != null) StartCoroutine(attackDeflect());
+        return StartCoroutine(attackDamage(damage));
     }
 
     public void stopAttack(Coroutine atk) {
         if(atk == null) return;
-        StopCoroutine(atk);
+        StopAllCoroutines();
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
     }
 
-    IEnumerator attack(float damage) {
+    IEnumerator attackDamage(float damage) {
         //Call the animator
-        bool deflect;
-        if(prefabDeflect != null) deflect = true;
-        else deflect = false;
         yield return new WaitForSeconds(attackTime.x); // Wait specified time before starting the attack
-        if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
-        if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
+        if(hitboxDamage != null) 
+            Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
         List<PlayerController> collidedCreatures;
-        List<Projectile> collidedBullets;
         hitboxDamage = Instantiate(prefabDamage).GetComponent<Hitbox>();
-        hitboxDeflect = Instantiate(prefabDeflect).GetComponent<Hitbox>();
         hitboxDamage.transform.parent = transform;
-        hitboxDeflect.transform.parent = transform;
         hitboxDamage.setPosAuto(true);
-        hitboxDeflect.setPosAuto(true);
+
         float totalTime = 0;
 
         collidedCreatures = getPlayers(hitboxDamage.collidedObjects(playerLayerMask));
-        collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
         foreach(PlayerController pl in collidedCreatures) {
             Debug.Log(pl.gameObject);
             //Deal damage
-        }
-        if(deflect) {
-            foreach(Projectile projectile in collidedBullets) {
-                //Deal damage
-            }
         }
         yield return new WaitForEndOfFrame();
 
@@ -69,21 +67,43 @@ public class EnemyAttacks : MonoBehaviour
             totalTime += Time.deltaTime; //Increase the time for the while loop.
             //Debug.Log(Time.deltaTime + ":" + totalTime + ":" + light_time.y);
             List<PlayerController> tempEnemies = newPlayers(collidedCreatures, getPlayers(hitboxDamage.collidedObjects(playerLayerMask))); //Temparory list of the new un-checked enemies
-            List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
             collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
-            collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(PlayerController pl in tempEnemies) {
                 Debug.Log(pl.gameObject);
                 //Deal damage
             }
-            if(deflect) {
-                foreach(Projectile projectile in tempProjectiles) {
-                    //Deal damage
-                }
-            }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }
         Destroy(hitboxDamage.gameObject);
+    }
+
+    IEnumerator attackDeflect() {
+        //Call the animator
+        yield return new WaitForSeconds(attackTime.x); // Wait specified time before starting the attack
+        if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
+        List<Projectile> collidedBullets;
+        hitboxDeflect = Instantiate(prefabDeflect).GetComponent<Hitbox>();
+        hitboxDeflect.transform.parent = transform;
+        hitboxDeflect.setPosAuto(true);
+        float totalTime = 0;
+        
+        collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
+        foreach(Projectile projectile in collidedBullets) {
+            //Deal damage
+        }
+
+        yield return new WaitForEndOfFrame();
+
+        while(totalTime <= attackTime.y) { //Check how long has passed
+            totalTime += Time.deltaTime; //Increase the time for the while loop.
+            //Debug.Log(Time.deltaTime + ":" + totalTime + ":" + light_time.y);
+            List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
+            collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
+            foreach(Projectile projectile in tempProjectiles) {
+                //Deal damage
+            }
+            yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
+        }
         Destroy(hitboxDeflect.gameObject);
     }
 
