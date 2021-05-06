@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Die() {
-        // Kill yourself -> call animator
+        // Call animator
+        Destroy(gameObject);
     }
 }

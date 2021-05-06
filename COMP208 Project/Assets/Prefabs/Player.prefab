@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35de114a552b1e44c81a4ab995950374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -110,9 +111,9 @@ MonoBehaviour:
   jumpSpeed: 40
   dashSpeed: 100
   dashDuration: 0.1
-  dashCooldown: 0
   teleportDistance: 10
   teleportCooldown: 0
+  floatTime: 0
 --- !u!50 &5008809865576594704
 Rigidbody2D:
   serializedVersion: 4
@@ -335,6 +336,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1d7489ff5c45e428c4b7330761c7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  floatTime: 0.1
+  attackDamages: {x: 40, y: 60}
   light_time: {x: 0.5, y: 1}
   heavy_time: {x: 0.5, y: 1}
   prefabsDamage:

@@ -101,7 +101,7 @@ public class Attacks : MonoBehaviour
     /// <returns></returns>
     IEnumerator light1() {
         //Call the animator
-        animator.SetBool("lightAttack01",true);
+        //animator.SetBool("lightAttack01",true);
         queCycle();
         LockAttack(light_time.x + (light_time.y/2), false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
@@ -247,7 +247,7 @@ public class Attacks : MonoBehaviour
             Debug.Log(enemy.gameObject);
             enemy.Damage(attackDamages[1]);
             player.Hover(floatTime);
-            player.Heal(10);
+            player.Damage(-10);
         }
         foreach(Projectile projectile in collidedBullets) {
             Debug.Log(projectile.gameObject);

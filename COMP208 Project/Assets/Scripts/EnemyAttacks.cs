@@ -89,7 +89,7 @@ public class EnemyAttacks : MonoBehaviour
         
         collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
         foreach(Projectile projectile in collidedBullets) {
-            projectile.Delfect();
+            projectile.Deflect();
         }
 
         yield return new WaitForEndOfFrame();
@@ -100,7 +100,7 @@ public class EnemyAttacks : MonoBehaviour
             List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
             collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Projectile projectile in tempProjectiles) {
-                projectile.Delfect();
+                projectile.Deflect();
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }

@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
-    [SerializeField]
-    private HealthBar healthbar;
+    //[SerializeField]
+    //private HealthBar healthbar;
     [SerializeField]
     private float maxHealth = 100;
     private float health;
@@ -94,6 +94,12 @@ public class PlayerController : MonoBehaviour {
                 rb.velocity = new Vector2(xVel, rb.velocity.y);
             }
         }
+
+        if (jumpsLeft < MAX_JUMPS) {
+            if (Grounded()) {
+                jumpsLeft = MAX_JUMPS;
+            }
+        }
     }
 
     // Checks if the player is touching the ground
@@ -178,8 +184,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Damage(float amount) {
-        health -= amount;
-        healthbar.SetHealth(health);
+        health = Math.Min((health - amount), maxHealth);
+        //healthbar.SetHealth(health);
 
         if (health <= 0) {
             Die();
