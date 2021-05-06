@@ -7,7 +7,17 @@ public class Attacks : MonoBehaviour
 {
     #region VariableSetting
     /// <summary>
-    /// The damage the light and heavy attackts do respectively
+    /// The player object controller script
+    /// </summary>
+    [SerializeField]
+    private PlayerController player;
+    /// <summary>
+    /// The amount of time (in seconds) to float for after hitting an attack
+    /// </summary>
+    [SerializeField]
+    private float floatTime;
+    /// <summary>
+    /// The damage the light and heavy attacks do respectively
     /// </summary>
     [SerializeField]
     private Vector2 attackDamages = new Vector3(40, 60);
@@ -112,9 +122,11 @@ public class Attacks : MonoBehaviour
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
             enemy.Damage(attackDamages[0]);
+            player.Hover(floatTime);
         }
         foreach(Projectile projectile in collidedBullets) {
             projectile.Deflect();
+            player.Hover(floatTime);
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
         yield return new WaitForEndOfFrame();
@@ -129,9 +141,11 @@ public class Attacks : MonoBehaviour
             foreach(Enemy enemy in tempEnemies) {
                 Debug.Log(enemy.gameObject);
                 enemy.Damage(attackDamages[0]);
+                player.Hover(floatTime);
             }
             foreach(Projectile projectile in tempProjectiles) {
                 projectile.Deflect();
+                player.Hover(floatTime);
             }
             comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
@@ -167,10 +181,12 @@ public class Attacks : MonoBehaviour
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
             enemy.Damage(attackDamages[0]);
+            player.Hover(floatTime);
         }
         foreach(Projectile projectile in collidedBullets) {
             Debug.Log(projectile.gameObject);
             projectile.Deflect();
+            player.Hover(floatTime);
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
         yield return new WaitForEndOfFrame();
@@ -185,10 +201,12 @@ public class Attacks : MonoBehaviour
             foreach(Enemy enemy in tempEnemies) {
                 Debug.Log(enemy.gameObject);
                 enemy.Damage(attackDamages[0]);
+                player.Hover(floatTime);
             }
             foreach(Projectile projectile in tempProjectiles) {
                 Debug.Log(projectile.gameObject);
                 projectile.Deflect();
+                player.Hover(floatTime);
             }
             comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
@@ -228,11 +246,13 @@ public class Attacks : MonoBehaviour
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
             enemy.Damage(attackDamages[1]);
-            //Heal player
+            player.Hover(floatTime);
+            player.Heal(10);
         }
         foreach(Projectile projectile in collidedBullets) {
             Debug.Log(projectile.gameObject);
             projectile.Deflect();
+            player.Hover(floatTime);
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
         yield return new WaitForEndOfFrame();
@@ -247,9 +267,11 @@ public class Attacks : MonoBehaviour
             foreach(Enemy enemy in tempEnemies) {
                 Debug.Log(enemy.gameObject);
                 enemy.Damage(attackDamages[1]);
+                player.Hover(floatTime);
             }
             foreach(Projectile projectile in tempProjectiles) {
                 projectile.Deflect();
+                player.Hover(floatTime);
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }

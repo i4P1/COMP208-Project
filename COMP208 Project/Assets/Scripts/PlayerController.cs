@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private HealthBar healthbar;
     [SerializeField]
-    private float maxHealth = 10;
+    private float maxHealth = 100;
     private float health;
 
     private const int MAX_JUMPS = 1;
@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour {
 
     private float hoverStartTime;
     private float hoverDuration;
+    [SerializeField]
+    private float floatTime;
 
     // Start is called before the first frame update
     private void Start() {
@@ -80,6 +82,7 @@ public class PlayerController : MonoBehaviour {
             // Stop dashing after its duration
             if((Time.time - dashStartTime) > dashDuration) {
                 dashing = false;
+                Hover(floatTime);
             }
 
             // Set the player's speed
@@ -161,6 +164,7 @@ public class PlayerController : MonoBehaviour {
         if(context.action.triggered && (teleportStartTime + teleportCooldown) < Time.time) {
             teleportStartTime = Time.time;
             Teleport();
+            Hover(floatTime);
         }
     }
 
