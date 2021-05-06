@@ -49,10 +49,25 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         distToGround = colliderExtents.y;
+<<<<<<< HEAD
         playerSize = Math.Max(colliderExtents.x, colliderExtents.y);
     }
 
     private void FixedUpdate() {
+=======
+        playerSize   = Math.Max(colliderExtents.x, colliderExtents.y);
+        animator     = GetComponent<Animator>();
+
+        teleportStartTime = -teleportCooldown;
+        dashStartTime     = -dashCooldown;
+    }
+
+    // Update is called once per frame
+    private void Update() {
+        // Get the speed of player
+        float xVel = input.actions["Move"].ReadValue<float>() * speed;
+
+>>>>>>> origin/Animation
         // Stop dashing after its duration
         if((Time.time - dashStartTime) > dashDuration && dashing) {
             dashing = false;
@@ -62,6 +77,7 @@ public class PlayerController : MonoBehaviour {
         // Set the player's speed
         if(dashing) {
             rb.velocity = dashDirection.normalized * dashSpeed;
+<<<<<<< HEAD
         }
     }
 
@@ -83,6 +99,24 @@ public class PlayerController : MonoBehaviour {
                 float xVel = input.actions["Move"].ReadValue<float>() * speed;
                 rb.velocity = new Vector2(xVel, rb.velocity.y);
             }
+=======
+
+            animator.SetFloat("speed", dashSpeed);
+        }
+        else {
+            //float xVel = input.actions["Move"].ReadValue<float>() * speed;
+            rb.velocity = new Vector2(xVel, rb.velocity.y);
+
+            animator.SetFloat("speed", Mathf.Abs(xVel));
+        }
+
+        // Animation Part
+        if (rb.velocity.y > 0) {
+            animator.SetBool("jump", true);
+        }
+        else {
+            animator.SetBool("jump", false);
+>>>>>>> origin/Animation
         }
     }
 
