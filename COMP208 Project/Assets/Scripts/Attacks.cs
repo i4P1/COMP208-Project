@@ -7,6 +7,11 @@ public class Attacks : MonoBehaviour
 {
     #region VariableSetting
     /// <summary>
+    /// The damage the light and heavy attackts do respectively
+    /// </summary>
+    [SerializeField]
+    private Vector2 attackDamages = new Vector3(40, 60);
+    /// <summary>
     /// The list of upcoming attacks
     /// </summary>
     AttackList?[] attackQue;
@@ -106,10 +111,10 @@ public class Attacks : MonoBehaviour
         collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
-            //Deal damage
+            enemy.Damage(attackDamages[0]);
         }
         foreach(Projectile projectile in collidedBullets) {
-            //Deal damage
+            projectile.Deflect();
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
         yield return new WaitForEndOfFrame();
@@ -123,10 +128,10 @@ public class Attacks : MonoBehaviour
             collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Enemy enemy in tempEnemies) {
                 Debug.Log(enemy.gameObject);
-                //Deal damage
+                enemy.Damage(attackDamages[0]);
             }
             foreach(Projectile projectile in tempProjectiles) {
-                //Deal damage
+                projectile.Deflect();
             }
             comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
@@ -161,11 +166,11 @@ public class Attacks : MonoBehaviour
         collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
-            //Deal damage
+            enemy.Damage(attackDamages[0]);
         }
         foreach(Projectile projectile in collidedBullets) {
             Debug.Log(projectile.gameObject);
-            //Deflect Projectile
+            projectile.Deflect();
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
         yield return new WaitForEndOfFrame();
@@ -179,11 +184,11 @@ public class Attacks : MonoBehaviour
             collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Enemy enemy in tempEnemies) {
                 Debug.Log(enemy.gameObject);
-                //Deal damage
+                enemy.Damage(attackDamages[0]);
             }
             foreach(Projectile projectile in tempProjectiles) {
                 Debug.Log(projectile.gameObject);
-                //Deflect Projectile
+                projectile.Deflect();
             }
             comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
@@ -222,12 +227,12 @@ public class Attacks : MonoBehaviour
         collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
-            //Deal damage
+            enemy.Damage(attackDamages[1]);
             //Heal player
         }
         foreach(Projectile projectile in collidedBullets) {
             Debug.Log(projectile.gameObject);
-            //Deflect
+            projectile.Deflect();
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
         yield return new WaitForEndOfFrame();
@@ -241,10 +246,10 @@ public class Attacks : MonoBehaviour
             collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Enemy enemy in tempEnemies) {
                 Debug.Log(enemy.gameObject);
-                //Deal damage
+                enemy.Damage(attackDamages[1]);
             }
             foreach(Projectile projectile in tempProjectiles) {
-                //Deal damage
+                projectile.Deflect();
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }

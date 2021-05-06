@@ -59,7 +59,7 @@ public class EnemyAttacks : MonoBehaviour
         collidedCreatures = getPlayers(hitboxDamage.collidedObjects(playerLayerMask));
         foreach(PlayerController pl in collidedCreatures) {
             Debug.Log(pl.gameObject);
-            //Deal damage
+            pl.Damage(4);
         }
         yield return new WaitForEndOfFrame();
 
@@ -70,7 +70,7 @@ public class EnemyAttacks : MonoBehaviour
             collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
             foreach(PlayerController pl in tempEnemies) {
                 Debug.Log(pl.gameObject);
-                //Deal damage
+                pl.Damage(4);
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }
@@ -89,7 +89,7 @@ public class EnemyAttacks : MonoBehaviour
         
         collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));
         foreach(Projectile projectile in collidedBullets) {
-            //Deal damage
+            projectile.Delfect();
         }
 
         yield return new WaitForEndOfFrame();
@@ -100,7 +100,7 @@ public class EnemyAttacks : MonoBehaviour
             List<Projectile> tempProjectiles = newProjectiles(collidedBullets, getProjectiles(hitboxDamage.collidedObjects(projectileLayerMask))); //Temparory list of the new un-checked projectiles
             collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Projectile projectile in tempProjectiles) {
-                //Deal damage
+                projectile.Delfect();
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }
