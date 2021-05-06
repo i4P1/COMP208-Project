@@ -3,6 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
+    [SerializeField]
+    private HealthBar healthbar;
+    [SerializeField]
+    private float maxHealth = 10;
+    private float health;
+
     private const int MAX_JUMPS = 1;
 
     [SerializeField]
@@ -49,25 +55,11 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         distToGround = colliderExtents.y;
-<<<<<<< HEAD
         playerSize = Math.Max(colliderExtents.x, colliderExtents.y);
+        health = maxHealth;
     }
 
     private void FixedUpdate() {
-=======
-        playerSize   = Math.Max(colliderExtents.x, colliderExtents.y);
-        animator     = GetComponent<Animator>();
-
-        teleportStartTime = -teleportCooldown;
-        dashStartTime     = -dashCooldown;
-    }
-
-    // Update is called once per frame
-    private void Update() {
-        // Get the speed of player
-        float xVel = input.actions["Move"].ReadValue<float>() * speed;
-
->>>>>>> origin/Animation
         // Stop dashing after its duration
         if((Time.time - dashStartTime) > dashDuration && dashing) {
             dashing = false;
@@ -77,7 +69,6 @@ public class PlayerController : MonoBehaviour {
         // Set the player's speed
         if(dashing) {
             rb.velocity = dashDirection.normalized * dashSpeed;
-<<<<<<< HEAD
         }
     }
 
@@ -99,24 +90,6 @@ public class PlayerController : MonoBehaviour {
                 float xVel = input.actions["Move"].ReadValue<float>() * speed;
                 rb.velocity = new Vector2(xVel, rb.velocity.y);
             }
-=======
-
-            animator.SetFloat("speed", dashSpeed);
-        }
-        else {
-            //float xVel = input.actions["Move"].ReadValue<float>() * speed;
-            rb.velocity = new Vector2(xVel, rb.velocity.y);
-
-            animator.SetFloat("speed", Mathf.Abs(xVel));
-        }
-
-        // Animation Part
-        if (rb.velocity.y > 0) {
-            animator.SetBool("jump", true);
-        }
-        else {
-            animator.SetBool("jump", false);
->>>>>>> origin/Animation
         }
     }
 
@@ -198,5 +171,18 @@ public class PlayerController : MonoBehaviour {
     public void Hover(float duration) {
         hoverStartTime = Time.time;
         hoverDuration = duration;
+    }
+
+    public void Damage(float amount) {
+        health -= amount;
+        healthbar.SetHealth(health);
+
+        if (health <= 0) {
+            Die();
+        }
+    }
+
+    public void Die() {
+        Debug.Log("Oh no! I'm dead!");
     }
 }
