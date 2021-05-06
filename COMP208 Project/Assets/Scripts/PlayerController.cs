@@ -84,6 +84,11 @@ public class PlayerController : MonoBehaviour {
                 rb.velocity = new Vector2(xVel, rb.velocity.y);
             }
         }
+        if(jumpsLeft < MAX_JUMPS) {
+            if(Grounded()) {
+                jumpsLeft = MAX_JUMPS;
+            }
+        }
     }
 
     // Checks if the player is touching the ground

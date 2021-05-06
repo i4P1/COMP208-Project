@@ -471,7 +471,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.37924528, g: 0.4719989, b: 0.5, a: 1}
+  m_BackGroundColor: {r: 0, g: 0.09411765, b: 0.101960786, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -531,8 +531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 295146395}
-  cameraSpeed: 2
-  offset: {x: 0, y: 5}
+  cameraSpeed: 5
+  offset: {x: 0, y: 3}
   plOffset: 0
 --- !u!50 &57466028
 Rigidbody2D:
