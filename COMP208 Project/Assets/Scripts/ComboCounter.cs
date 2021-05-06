@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ComboCounter : MonoBehaviour
-{
+public class ComboCounter : MonoBehaviour {
     private int comboCount;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI comboDisplay;
     //Animator animator;
 
     public void updateComboCount(int amount = 1) {
         comboCount += amount;
+        comboDisplay.text = comboCount.ToString();
 
         //animator.updateComboCounter(comboCount, heavy)
     }
