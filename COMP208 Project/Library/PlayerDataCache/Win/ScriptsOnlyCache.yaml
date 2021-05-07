@@ -2,6 +2,8 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - MainMenu
+    - PauseMenu
+    - SettingsMenu
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -39,9 +41,15 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.Dropdown
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
   sceneClasses:
     Assets/Scenes/Level 1.unity:
     - Class: 1
@@ -62,6 +70,18 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1550}
+    - Class: 114
+      Script: {instanceID: 2288}
+    - Class: 114
+      Script: {instanceID: 3526}
+    - Class: 114
+      Script: {instanceID: 24434}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
@@ -69,6 +89,10 @@ ScriptsOnlyBuild:
     - Class: 212
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/Menu.unity:
     - Class: 1
@@ -92,31 +116,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1550}
     - Class: 114
-      Script: {instanceID: 1890}
+      Script: {instanceID: 1592}
     - Class: 114
-      Script: {instanceID: 2278}
+      Script: {instanceID: 1684}
     - Class: 114
-      Script: {instanceID: 2286}
+      Script: {instanceID: 1762}
     - Class: 114
-      Script: {instanceID: 2734}
+      Script: {instanceID: 1892}
     - Class: 114
-      Script: {instanceID: 2920}
+      Script: {instanceID: 2280}
     - Class: 114
-      Script: {instanceID: 3132}
+      Script: {instanceID: 2288}
     - Class: 114
-      Script: {instanceID: 3524}
+      Script: {instanceID: 2736}
     - Class: 114
-      Script: {instanceID: 3908}
+      Script: {instanceID: 2922}
     - Class: 114
-      Script: {instanceID: 4422}
+      Script: {instanceID: 3134}
     - Class: 114
-      Script: {instanceID: 4810}
+      Script: {instanceID: 3408}
     - Class: 114
-      Script: {instanceID: 4998}
+      Script: {instanceID: 3526}
     - Class: 114
-      Script: {instanceID: 5384}
+      Script: {instanceID: 3910}
     - Class: 114
-      Script: {instanceID: 27508}
+      Script: {instanceID: 4424}
+    - Class: 114
+      Script: {instanceID: 4426}
+    - Class: 114
+      Script: {instanceID: 4626}
+    - Class: 114
+      Script: {instanceID: 4812}
+    - Class: 114
+      Script: {instanceID: 4888}
+    - Class: 114
+      Script: {instanceID: 5000}
+    - Class: 114
+      Script: {instanceID: 5386}
+    - Class: 114
+      Script: {instanceID: 5488}
+    - Class: 114
+      Script: {instanceID: 24434}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -132,6 +172,12 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -170,6 +216,12 @@ ScriptsOnlyBuild:
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding
     className: GraphUpdateScene
+  - hash:
+      serializedVersion: 2
+      Hash: 8b21061e9d037d307e029130da878344
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SettingsMenu
   - hash:
       serializedVersion: 2
       Hash: 77aaaaa51f7a8d8ff333a879741e47d2
@@ -1048,6 +1100,12 @@ ScriptsOnlyBuild:
     className: GameController
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenu
+  - hash:
+      serializedVersion: 2
       Hash: c0e31dd31c35455f422978da26bb908a
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding
@@ -1132,13 +1190,12 @@ ScriptsOnlyBuild:
     className: SingleNodeBlocker
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: c8c5e65e9fb858572516474d6e2102bc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: MainMenu
+    className: PauseMenu
   platform: 5
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Level 1.unity
-  playerPath: C:/Users/suzut/Documents/GitHub/COMP208-Project/COMP208 Project/COMP208
-    Project.exe
+  playerPath: C:/Users/suzut/Desktop/TestBuild/COMP208 Project.exe
