@@ -488,7 +488,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1182832b6c9405b4cbd662af2979e3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboDisplay: {fileID: 0}
 --- !u!4 &115841496
 Transform:
   m_ObjectHideFlags: 0
@@ -6281,6 +6282,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5008809865576594704, guid: 99ba5274c5894304ea4b2f2a2e4fbff2,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5008809865576594705, guid: 99ba5274c5894304ea4b2f2a2e4fbff2,
         type: 3}
       propertyPath: m_RootOrder
@@ -6619,6 +6625,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781228984646040400, guid: d92a7bbc7f2123b42908d3f44e2a144c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 781228984646040400, guid: d92a7bbc7f2123b42908d3f44e2a144c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 781228984646040400, guid: d92a7bbc7f2123b42908d3f44e2a144c,
         type: 3}

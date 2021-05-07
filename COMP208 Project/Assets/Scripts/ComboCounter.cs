@@ -8,7 +8,7 @@ public class ComboCounter : MonoBehaviour {
 
     public void updateComboCount(int amount = 1) {
         comboCount += amount;
-        comboDisplay.text = comboCount.ToString();
+        //comboDisplay.text = comboCount.ToString();
 
         //animator.updateComboCounter(comboCount, heavy)
     }
