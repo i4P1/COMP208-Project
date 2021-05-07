@@ -10,11 +10,11 @@ public class EnemyAttacks : MonoBehaviour
     /// <summary>
     /// Layermask for the enemies
     /// </summary>
-    public LayerMask playerLayerMask = 6;
+    public LayerMask playerLayerMask;
     /// <summary>
     /// Layermask for the projectiles
     /// </summary>
-    public LayerMask projectileLayerMask = 9;
+    public LayerMask projectileLayerMask;
     /// <summary>
     /// x == delay until damage starts || y == duration of damage
     /// </summary>

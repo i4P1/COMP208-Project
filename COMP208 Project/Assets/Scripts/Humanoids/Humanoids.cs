@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Humanoids : Enemy
@@ -16,12 +14,12 @@ public class Humanoids : Enemy
     /// Layermask for the player
     /// </summary>
     [SerializeField]
-    protected LayerMask playerLayerMask = 6;
+    protected LayerMask playerLayerMask;
     /// <summary>
     /// Layermask for the ground
     /// </summary>
     [SerializeField]
-    protected LayerMask groundLayerMask = 3;
+    protected LayerMask groundLayerMask;
 
     protected void Move(Vector2 direction) {
         if(direction == Vector2.zero)

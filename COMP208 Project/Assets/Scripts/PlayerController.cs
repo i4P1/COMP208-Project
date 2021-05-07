@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
-    //[SerializeField]
-    //private HealthBar healthbar;
+    [SerializeField]
+    private HealthBar healthbar;
     [SerializeField]
     private float maxHealth = 100;
     private float health;
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Damage(float amount) {
         health = Math.Min((health - amount), maxHealth);
-        //healthbar.SetHealth(health);
+        healthbar.SetHealth(health);
 
         if (health <= 0) {
             Die();

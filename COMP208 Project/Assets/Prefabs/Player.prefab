@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5008809865576594708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35de114a552b1e44c81a4ab995950374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthbar: {fileID: 0}
   maxHealth: 100
   groundLayerMask:
     serializedVersion: 2
@@ -112,8 +113,8 @@ MonoBehaviour:
   dashSpeed: 100
   dashDuration: 0.1
   teleportDistance: 10
-  teleportCooldown: 0
-  floatTime: 0
+  teleportCooldown: 2
+  floatTime: 0.1
 --- !u!50 &5008809865576594704
 Rigidbody2D:
   serializedVersion: 4
@@ -336,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1d7489ff5c45e428c4b7330761c7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 5008809865576594711}
   floatTime: 0.1
   attackDamages: {x: 40, y: 60}
   light_time: {x: 0.5, y: 1}
