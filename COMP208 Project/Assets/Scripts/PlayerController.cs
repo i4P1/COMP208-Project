@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
     private HealthBar healthbar;
     [SerializeField]
     private float maxHealth = 100;
@@ -13,15 +16,14 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private LayerMask groundLayerMask;
-    [SerializeField]
+    [SerializeField]                                  
     private LayerMask playerLayerMask;
 
     private float playerSize;
     private PlayerInput input;
-    private Animator animator;
     private Rigidbody2D rb;
 
-    private int direction;
+    private float direction;
     private int jumpsLeft = MAX_JUMPS;
     [SerializeField]
     private float speed = 10;
@@ -59,12 +61,15 @@ public class PlayerController : MonoBehaviour {
         distToGround = colliderExtents.y;
         playerSize = Math.Max(colliderExtents.x, colliderExtents.y);
         health = maxHealth;
+        direction = 1;
+        animator.SetBool("dashing", false);
     }
 
     private void FixedUpdate() {
         // Stop dashing after its duration
         if((Time.time - dashStartTime) > dashDuration && dashing) {
             dashing = false;
+            animator.SetBool("dashing", false);
             rb.velocity = Vector2.zero;
         }
 
@@ -80,8 +85,9 @@ public class PlayerController : MonoBehaviour {
         }
         else {
             // Stop dashing after its duration
-            if((Time.time - dashStartTime) > dashDuration) {
+            if((Time.time - dashStartTime) > dashDuration && dashing) {
                 dashing = false;
+                animator.SetBool("dashing", false);
                 Hover(floatTime);
             }
 
@@ -92,19 +98,35 @@ public class PlayerController : MonoBehaviour {
             else {
                 float xVel = input.actions["Move"].ReadValue<float>() * speed;
                 rb.velocity = new Vector2(xVel, rb.velocity.y);
+                if(xVel != 0) {
+                    if(direction / Mathf.Abs(direction) != xVel / Mathf.Abs(xVel))
+                        flip();
+                    direction = xVel;
+                }
             }
         }
 
-        if (jumpsLeft < MAX_JUMPS) {
-            if (Grounded()) {
+        animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+        if(Grounded()) {
+            animator.SetBool("airborn", false);
+            if (jumpsLeft < MAX_JUMPS) {
                 jumpsLeft = MAX_JUMPS;
             }
         }
+        else {
+            animator.SetBool("airborn", true);
+        }
+    }
+
+    private void flip() {
+        Transform t = animator.transform;
+        t.localPosition = new Vector3(-t.localPosition.x, t.localPosition.y, t.localPosition.z);
+        t.localScale = new Vector3(-t.localScale.x, t.localScale.y, t.localScale.z);
     }
 
     // Checks if the player is touching the ground
     private bool Grounded() {
-        bool raycastHit = Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.1f, groundLayerMask);
+        bool raycastHit = Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.2f, groundLayerMask);
 
         if(raycastHit) {
             canDash = true;
@@ -143,6 +165,7 @@ public class PlayerController : MonoBehaviour {
         if(context.action.triggered && canDash) {
             dashStartTime = Time.time;
             dashing = true;
+            animator.SetBool("dashing", true);
             dashDirection = GetComponent<PlayerInput>().actions["Aim"].ReadValue<Vector2>();
             canDash = false;
         }

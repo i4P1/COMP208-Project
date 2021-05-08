@@ -1,0 +1,2 @@
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\UnityEditor.UI.csprojAssemblyReference.cache
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\UnityEditor.UI.csproj.CoreCompileInputs.cache

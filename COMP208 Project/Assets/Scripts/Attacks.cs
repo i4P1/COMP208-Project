@@ -33,6 +33,9 @@ public class Attacks : MonoBehaviour
     /// x == delay until damage starts || y == duration of damage
     /// </summary>
     public Vector2 heavy_time;
+
+    private AttackList? activeAttackEnum;
+
     /// <summary>
     /// The current active attack, to be used for cancelling attacks to move to the next ones.
     /// </summary>
@@ -63,7 +66,8 @@ public class Attacks : MonoBehaviour
     Hitbox hitboxDeflect;
     [SerializeField]
     ComboCounter comboCounter;
-    //Player player;
+
+    [SerializeField]
     private Animator    animator;
     private Rigidbody2D rb;
     #endregion
@@ -78,15 +82,16 @@ public class Attacks : MonoBehaviour
         if(!attackLock) {
             switch(attackQue[0]) {
                 case AttackList.light1:
-                    if(activeAttack != null) StopCoroutine(activeAttack);
+                    if(activeAttack != null) stopAttack();
                     activeAttack = StartCoroutine(light1());
                     break;
                 case AttackList.light2:
-                    if(activeAttack != null) StopCoroutine(activeAttack);
+                    if(activeAttack != null) stopAttack();
                     activeAttack = StartCoroutine(light2());
                     break;
                 case AttackList.heavy:
-                    if(activeAttack != null) StopCoroutine(activeAttack);
+                    Debug.Log("Heavy");
+                    if(activeAttack != null) stopAttack();
                     activeAttack = StartCoroutine(heavy());
                     break;
                 default:
@@ -100,11 +105,14 @@ public class Attacks : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     IEnumerator light1() {
+        animator.SetBool("attacking", true);
+        animator.SetTrigger("light1");
         //Call the animator
         //animator.SetBool("lightAttack01",true);
-        queCycle();
+
         LockAttack(light_time.x + (light_time.y/2), false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
+        queCycle();
         if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
         if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
         List<Enemy> collidedCreatures; 
@@ -153,6 +161,9 @@ public class Attacks : MonoBehaviour
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
         activeAttack = null;
+
+        animator.SetBool("attacking", false);
+
     }
     
     /// <summary>
@@ -161,9 +172,14 @@ public class Attacks : MonoBehaviour
     /// <returns></returns>
     IEnumerator light2() {
         //Call the animator
-        queCycle();
+
+        animator.SetBool("attacking", true);
+        animator.SetTrigger("light2");
+
+
         LockAttack(light_time.x + (light_time.y / 2), false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
+        queCycle();
         if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
         if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
         List<Enemy> collidedCreatures;
@@ -214,6 +230,8 @@ public class Attacks : MonoBehaviour
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
         activeAttack = null;
+
+        animator.SetBool("attacking", false);
     }
 
     /// <summary>
@@ -222,6 +240,10 @@ public class Attacks : MonoBehaviour
     /// <returns></returns>
     IEnumerator heavy() {
         //Call the animator
+
+        animator.SetBool("attacking", true);
+        animator.SetTrigger("heavy");
+
         LockAttack(heavy_time.x + heavy_time.y, false, false);
         yield return new WaitForSeconds(heavy_time.x); // Wait specified time before starting the attack
         if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
@@ -279,9 +301,36 @@ public class Attacks : MonoBehaviour
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
         activeAttack = null;
+
+        animator.SetBool("attacking", false);
     }
 
     #region Helper Functions
+
+    private void stopAttack() {
+        StopCoroutine(activeAttack);
+        animator.SetBool("attacking", false);
+        switch(activeAttackEnum) {
+            case AttackList.light1:
+                activeAttack = null;
+                activeAttackEnum = null;
+                animator.SetBool("light1", false);
+                break;
+            case AttackList.light2:
+                activeAttack = null;
+                activeAttackEnum = null;
+                animator.SetBool("light2", false);
+                break;
+            case AttackList.heavy:
+                activeAttack = null;
+                activeAttackEnum = null;
+                animator.SetBool("heavy", false);
+                break;
+            default:
+                break;
+        }
+    }
+
     /// <summary>
     /// Stops any new attacks from starting
     /// </summary>
@@ -407,6 +456,7 @@ public class Attacks : MonoBehaviour
     public void OnLight(InputAction.CallbackContext context) {
         if(!context.action.triggered) return;
         (AttackList? atk, int i) check = queCheck();
+        Debug.Log(check);
         if(check.atk == AttackList.light1) {
             attackQue[check.i] = AttackList.light1;
         }

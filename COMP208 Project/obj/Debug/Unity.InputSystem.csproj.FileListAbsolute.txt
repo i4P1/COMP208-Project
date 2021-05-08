@@ -1,0 +1,2 @@
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\Unity.InputSystem.csprojAssemblyReference.cache
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\Unity.InputSystem.csproj.CoreCompileInputs.cache

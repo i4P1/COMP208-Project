@@ -1,0 +1,4 @@
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\UnityEngine.TestRunner.csprojAssemblyReference.cache
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\UnityEngine.TestRunner.csproj.CoreCompileInputs.cache
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\UnityEngine.TestRunner.dll
+C:\Users\SirPirate\Documents\GitHub\COMP208-Project\COMP208 Project\obj\Debug\UnityEngine.TestRunner.pdb
