@@ -2387,6 +2387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1182832b6c9405b4cbd662af2979e3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboDisplay: {fileID: 0}
 --- !u!4 &1305973630
 Transform:
   m_ObjectHideFlags: 0
@@ -3523,6 +3524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3534da26204ffe4eb34cb12c00b7b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 40
+  knockback: 800
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1868894960
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Humanoid3 : Humanoids
@@ -25,7 +24,8 @@ public class Humanoid3 : Humanoids
 
     Coroutine atkSeq;
 
-    void Start() {
+    protected override void Start() {
+        base.Start();
         ea = GetComponent<EnemyAttacks>();
         rb = GetComponent<Rigidbody2D>();
         eaSetUp();

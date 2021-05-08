@@ -19,7 +19,7 @@ public class Orb : Enemy, IMoveable {
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == playerLayerMask.value) {
+        if (Mathf.Pow(2, other.gameObject.layer) == playerLayerMask) {
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
 
             player.Damage(damage);

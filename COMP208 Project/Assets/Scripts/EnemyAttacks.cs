@@ -22,10 +22,9 @@ public class EnemyAttacks : MonoBehaviour
 
     bool trackObject;
 
-    Coroutine attackdmg;
-
     Hitbox hitboxDamage;
     Hitbox hitboxDeflect;
+    Coroutine attackdmg;
 
     private void FixedUpdate() {
         if(trackObject && hitboxDamage != null)
@@ -38,9 +37,9 @@ public class EnemyAttacks : MonoBehaviour
         return attackdmg;
     }
 
-    public Coroutine startAttack(float damage, bool track = true) {
-        if(prefabDeflect != null) StartCoroutine(attackDeflect());
-        attackdmg = StartCoroutine(attackDamage(damage));
+    public Coroutine startAttack(float damage, float? xMult = null, bool track = true) {
+        if(prefabDeflect != null) StartCoroutine(attackDeflect(xMult));
+        attackdmg = StartCoroutine(attackDamage(damage, xMult));
         return attackdmg;
     }
 
@@ -70,7 +69,7 @@ public class EnemyAttacks : MonoBehaviour
 
         collidedCreatures = getPlayers(hitboxDamage.collidedObjects(playerLayerMask));
         foreach(PlayerController pl in collidedCreatures) {
-            Debug.Log(pl.gameObject); 
+            Debug.Log(pl.gameObject);
             pl.Damage(damage);
         }
         yield return new WaitForEndOfFrame();
@@ -82,7 +81,7 @@ public class EnemyAttacks : MonoBehaviour
             collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
             foreach(PlayerController pl in tempEnemies) {
                 Debug.Log(pl.gameObject);
-                pl.Damage(4);
+                pl.Damage(damage);
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }
@@ -99,7 +98,6 @@ public class EnemyAttacks : MonoBehaviour
         hitboxDeflect.transform.parent = transform;
         hitboxDeflect.setPosAuto(true);
 
-        xMult ??= 1;
         hitboxDeflect.transform.localScale = new Vector2((float)xMult * hitboxDeflect.transform.localScale.x, hitboxDeflect.transform.localScale.y);
         hitboxDeflect.transform.localPosition = new Vector2((float)xMult * hitboxDeflect.transform.localPosition.x, hitboxDeflect.transform.localPosition.y);
 
