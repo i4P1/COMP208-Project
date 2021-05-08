@@ -24,6 +24,7 @@ public class EnemyAttacks : MonoBehaviour
 
     Hitbox hitboxDamage;
     Hitbox hitboxDeflect;
+    Coroutine attackdmg;
 
     private void FixedUpdate() {
         if(trackObject && hitboxDamage != null)
@@ -32,19 +33,25 @@ public class EnemyAttacks : MonoBehaviour
             hitboxDeflect.setPosAuto(true); //Change to a proper direction
     }
 
-    public Coroutine startAttack(float damage, bool track = true) {
-        if(prefabDeflect != null) StartCoroutine(attackDeflect());
-        return StartCoroutine(attackDamage(damage));
+    public Coroutine attackStatus() {
+        return attackdmg;
+    }
+
+    public Coroutine startAttack(float damage, float? xMult = null, bool track = true) {
+        if(prefabDeflect != null) StartCoroutine(attackDeflect(xMult));
+        attackdmg = StartCoroutine(attackDamage(damage, xMult));
+        return attackdmg;
     }
 
     public void stopAttack(Coroutine atk) {
         if(atk == null) return;
         StopAllCoroutines();
+        attackdmg = null;
         Destroy(hitboxDamage.gameObject);
         Destroy(hitboxDeflect.gameObject);
     }
 
-    IEnumerator attackDamage(float damage) {
+    IEnumerator attackDamage(float damage, float? xMult = null) {
         //Call the animator
         yield return new WaitForSeconds(attackTime.x); // Wait specified time before starting the attack
         if(hitboxDamage != null) 
@@ -54,12 +61,16 @@ public class EnemyAttacks : MonoBehaviour
         hitboxDamage.transform.parent = transform;
         hitboxDamage.setPosAuto(true);
 
+        xMult ??= 1;
+        hitboxDamage.transform.localScale = new Vector2((float)xMult * hitboxDamage.transform.localScale.x, hitboxDamage.transform.localScale.y);
+        hitboxDamage.transform.localPosition = new Vector2((float)xMult * hitboxDamage.transform.localPosition.x, hitboxDamage.transform.localPosition.y);
+
         float totalTime = 0;
 
         collidedCreatures = getPlayers(hitboxDamage.collidedObjects(playerLayerMask));
         foreach(PlayerController pl in collidedCreatures) {
             Debug.Log(pl.gameObject);
-            pl.Damage(4);
+            pl.Damage(damage);
         }
         yield return new WaitForEndOfFrame();
 
@@ -70,14 +81,15 @@ public class EnemyAttacks : MonoBehaviour
             collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
             foreach(PlayerController pl in tempEnemies) {
                 Debug.Log(pl.gameObject);
-                pl.Damage(4);
+                pl.Damage(damage);
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }
+        attackdmg = null;
         Destroy(hitboxDamage.gameObject);
     }
 
-    IEnumerator attackDeflect() {
+    IEnumerator attackDeflect(float? xMult = null) {
         //Call the animator
         yield return new WaitForSeconds(attackTime.x); // Wait specified time before starting the attack
         if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
@@ -85,6 +97,10 @@ public class EnemyAttacks : MonoBehaviour
         hitboxDeflect = Instantiate(prefabDeflect).GetComponent<Hitbox>();
         hitboxDeflect.transform.parent = transform;
         hitboxDeflect.setPosAuto(true);
+
+        hitboxDeflect.transform.localScale = new Vector2((float)xMult * hitboxDeflect.transform.localScale.x, hitboxDeflect.transform.localScale.y);
+        hitboxDeflect.transform.localPosition = new Vector2((float)xMult * hitboxDeflect.transform.localPosition.x, hitboxDeflect.transform.localPosition.y);
+
         float totalTime = 0;
         
         collidedBullets = getProjectiles(hitboxDeflect.collidedObjects(projectileLayerMask));

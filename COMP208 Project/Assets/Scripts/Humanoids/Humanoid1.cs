@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class Humanoid1 : Humanoids
 {
@@ -9,7 +6,12 @@ public class Humanoid1 : Humanoids
     EnemyAttacks ea;
 
     [SerializeField]
-    float atkRange;
+    float agroRange;
+    [SerializeField]
+    float attackRange;
+    [SerializeField]
+    float attackCooldown = 1;
+    float lastAttackTime;
     [SerializeField]
     Vector2 attackTime;
     [SerializeField]
@@ -21,11 +23,13 @@ public class Humanoid1 : Humanoids
 
     #region setup
     // Start is called before the first frame update
-    void Start() {
+    protected override void Start() {
+        base.Start();
         rb = GetComponent<Rigidbody2D>();
         ea = GetComponent<EnemyAttacks>();
         eaSetUp();
         lockedMovement = false;
+        lastAttackTime = -attackCooldown;
     }
 
     private void eaSetUp() {
@@ -35,8 +39,8 @@ public class Humanoid1 : Humanoids
     #endregion
 
     #region attacking
-    private void startAttack() {
-        atkSeq = ea.startAttack(attackDamage);
+    private void startAttack(float? xMult) {
+        ea.startAttack(attackDamage, xMult);
     }
 
     #endregion
@@ -45,10 +49,26 @@ public class Humanoid1 : Humanoids
 
     private void Update() {
         dir = findPlayer();
-        if(checkFloor() && !lockedMovement && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < atkRange) 
+        if(checkFloor() && !lockedMovement && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < agroRange) 
             Move(new Vector2(dir.x, 0));
         else 
             Move(Vector2.zero);
+
+        if ((pc.transform.position - transform.position).magnitude < attackRange && (Time.time - lastAttackTime) > attackCooldown) {
+            lastAttackTime = Time.time;
+
+            float? mult = null;
+
+            if (dir.x > 0.1f) {
+                mult = 1;
+            } else if (dir.x < -0.1f) {
+                mult = -1;
+            }
+
+            startAttack(mult);
+        } else {
+            atkSeq = ea.attackStatus();
+        }
     }
 
     #endregion

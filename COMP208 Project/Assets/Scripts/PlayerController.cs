@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
     private Rigidbody2D rb;
 
-    private int direction;
+    private float direction;
     private int jumpsLeft = MAX_JUMPS;
     [SerializeField]
     private float speed = 10;
@@ -77,10 +77,9 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         if((Time.time - hoverStartTime) < hoverDuration) {
             rb.velocity = Vector2.zero;
-        }
-        else {
+        } else {
             // Stop dashing after its duration
-            if((Time.time - dashStartTime) > dashDuration) {
+            if((Time.time - dashStartTime) > dashDuration && dashing) {
                 dashing = false;
                 Hover(floatTime);
             }
@@ -88,10 +87,13 @@ public class PlayerController : MonoBehaviour {
             // Set the player's speed
             if(dashing) {
                 rb.velocity = dashDirection.normalized * dashSpeed;
-            }
-            else {
+            } else {
                 float xVel = input.actions["Move"].ReadValue<float>() * speed;
                 rb.velocity = new Vector2(xVel, rb.velocity.y);
+
+                if (xVel != 0) {
+                    direction = xVel;
+                }
             }
         }
 

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class Humanoid2 : Humanoids
 {
@@ -28,7 +26,8 @@ public class Humanoid2 : Humanoids
 
     #region setup
     // Start is called before the first frame update
-    void Start() {
+    protected override void Start() {
+        base.Start();
         ea = GetComponent<EnemyAttacks>();
         rb = GetComponent<Rigidbody2D>();
         eaSetUp();

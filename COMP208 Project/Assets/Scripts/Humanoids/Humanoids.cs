@@ -9,6 +9,7 @@ public class Humanoids : Enemy
     protected Vector2 dir;
     protected Vector2 raycastOffset;
     protected PlayerController pc;
+    protected float xScale;
 
     /// <summary>
     /// Layermask for the player
@@ -20,6 +21,10 @@ public class Humanoids : Enemy
     /// </summary>
     [SerializeField]
     protected LayerMask groundLayerMask;
+
+    protected virtual void Start() {
+        xScale = GetComponent<RectTransform>().localScale.x;
+    }
 
     protected void Move(Vector2 direction) {
         if(direction == Vector2.zero)
