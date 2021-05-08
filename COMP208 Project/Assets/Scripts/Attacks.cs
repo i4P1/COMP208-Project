@@ -80,6 +80,7 @@ public class Attacks : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if(!attackLock) {
+            Debug.Log(attackQue[0] + ":" + attackQue[1]);
             switch(attackQue[0]) {
                 case AttackList.light1:
                     if(activeAttack != null) stopAttack();
@@ -107,12 +108,10 @@ public class Attacks : MonoBehaviour
     IEnumerator light1() {
         animator.SetBool("attacking", true);
         animator.SetTrigger("light1");
-        //Call the animator
-        //animator.SetBool("lightAttack01",true);
 
-        LockAttack(light_time.x + (light_time.y/2), false, false);
+        StartCoroutine(delayedCycle((light_time.x + light_time.y) / 2 + 0.01f));
+        LockAttack(light_time.x + (light_time.y/2) + 0.01f, false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
-        queCycle();
         if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
         if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
         List<Enemy> collidedCreatures; 
@@ -176,10 +175,10 @@ public class Attacks : MonoBehaviour
         animator.SetBool("attacking", true);
         animator.SetTrigger("light2");
 
+        StartCoroutine(delayedCycle((light_time.x + light_time.y) / 2));
 
-        LockAttack(light_time.x + (light_time.y / 2), false, false);
+        LockAttack(light_time.x + (light_time.y / 2) + 0.01f, false, false);
         yield return new WaitForSeconds(light_time.x); // Wait specified time before starting the attack
-        queCycle();
         if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
         if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
         List<Enemy> collidedCreatures;
@@ -239,12 +238,13 @@ public class Attacks : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     IEnumerator heavy() {
-        //Call the animator
 
         animator.SetBool("attacking", true);
         animator.SetTrigger("heavy");
 
-        LockAttack(heavy_time.x + heavy_time.y, false, false);
+        StartCoroutine(delayedCycle(heavy_time.x + heavy_time.y));
+
+        LockAttack(heavy_time.x + heavy_time.y + 0.01f, false, false);
         yield return new WaitForSeconds(heavy_time.x); // Wait specified time before starting the attack
         if(hitboxDamage != null) Destroy(hitboxDamage.gameObject); //Destroy any pre-existing damage hitbox to start this attack.
         if(hitboxDeflect != null) Destroy(hitboxDeflect.gameObject); //Destroy any pre-existing deflection hitbox to start this attack.
@@ -307,6 +307,12 @@ public class Attacks : MonoBehaviour
 
     #region Helper Functions
 
+    IEnumerator delayedCycle(float time) {
+        yield return new WaitForSeconds(time);
+        Debug.Log("Cycling");
+        queCycle();
+    }
+
     private void stopAttack() {
         StopCoroutine(activeAttack);
         animator.SetBool("attacking", false);
@@ -359,6 +365,7 @@ public class Attacks : MonoBehaviour
     IEnumerator lockAttackCR(float waitTime) {
         attackLock = true;
         yield return new WaitForSeconds(waitTime);
+        Debug.Log("Unlocked");
         attackLock = false;
     }
 
@@ -456,7 +463,6 @@ public class Attacks : MonoBehaviour
     public void OnLight(InputAction.CallbackContext context) {
         if(!context.action.triggered) return;
         (AttackList? atk, int i) check = queCheck();
-        Debug.Log(check);
         if(check.atk == AttackList.light1) {
             attackQue[check.i] = AttackList.light1;
         }

@@ -395,7 +395,7 @@ MonoBehaviour:
   player: {fileID: 5008809865576594711}
   floatTime: 0.1
   attackDamages: {x: 40, y: 60}
-  light_time: {x: 0, y: 0.5}
+  light_time: {x: 0.1, y: 0.5}
   heavy_time: {x: 0, y: 0.5}
   prefabsDamage:
   - {fileID: 3983796090266319822, guid: 1808e259063ccc64ca8f703bd87ffaaa, type: 3}
