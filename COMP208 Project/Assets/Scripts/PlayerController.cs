@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
@@ -216,6 +217,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Die() {
-        Debug.Log("Oh no! I'm dead!");
+        SceneManager.LoadScene(0);
     }
 }
