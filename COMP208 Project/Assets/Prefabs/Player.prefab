@@ -159,6 +159,9 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  killBoxLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   speed: 10
   jumpSpeed: 40
   dashSpeed: 33
