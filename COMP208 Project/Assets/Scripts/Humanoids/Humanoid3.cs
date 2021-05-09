@@ -95,10 +95,10 @@ public class Humanoid3 : Humanoids
         }
 
         dir = findPlayer();
-        if(checkFloor() && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < attackRange) {
+        if(checkFloor() && dir != Vector2.zero && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < attackRange) {
             atkSeq = StartCoroutine(attackSequence());
         }
-        else if(checkFloor() && !lockedMovement && (pc.transform.position - transform.position).magnitude < aggroRange) {
+        else if(pc != null && checkFloor() && !lockedMovement && (pc.transform.position - transform.position).magnitude < aggroRange) {
             Move(new Vector2(dir.x, 0));
         }
         else if(atkSeq == null)
