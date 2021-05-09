@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     private LayerMask groundLayerMask;
     [SerializeField]                                  
     private LayerMask playerLayerMask;
+    [SerializeField]
+    private LayerMask killBoxLayerMask;
 
     private float playerSize;
     private PlayerInput input;
@@ -218,5 +220,11 @@ public class PlayerController : MonoBehaviour {
 
     public void Die() {
         SceneManager.LoadScene(0);
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (Mathf.Pow(2, other.gameObject.layer) == killBoxLayerMask.value) {
+            Die();
+        }
     }
 }
