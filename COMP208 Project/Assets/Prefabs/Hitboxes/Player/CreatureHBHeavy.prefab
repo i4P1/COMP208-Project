@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3983796090266319822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3983796090266319817}
+  - component: {fileID: 3983796090266319823}
+  - component: {fileID: 4199117427654273376}
+  m_Layer: 0
+  m_Name: CreatureHBHeavy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3983796090266319817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983796090266319822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.15285757}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3983796090266319823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983796090266319822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de0cd07a55a92d43b14e13c45b8e76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0}
+  pl: {fileID: 0}
+--- !u!60 &4199117427654273376
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983796090266319822}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.7473912, y: 1.2577558}
+      - {x: 2.3090427, y: 2.177002}
+      - {x: 1.4819472, y: 2.7609687}
+      - {x: 0.2907021, y: 3.0669994}
+      - {x: -0.798903, y: 2.8024812}
+      - {x: -1.2453038, y: 2.3905265}
+      - {x: -1.3379753, y: 2.2355433}
+      - {x: -1.1433237, y: 2.2246258}
+      - {x: -0.9028359, y: 2.3290796}
+      - {x: -0.6741781, y: 2.3320465}
+      - {x: 0.071115375, y: 1.6744566}
+      - {x: 0.66416895, y: 0.6210475}
+      - {x: 0.9254675, y: -0.42662442}
+      - {x: 0.85230637, y: -1.2221653}
+      - {x: 2.576621, y: -1.4012516}
+      - {x: 2.7240105, y: -0.79445815}
+      - {x: 2.8018272, y: 0.37019962}

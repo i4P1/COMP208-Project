@@ -5,16 +5,32 @@ public interface IMoveable {
 }
 
 public class Enemy : MonoBehaviour {
+    [SerializeField]
     private float health;
     protected bool lockedMovement;
+
+    [SerializeField]
+    protected Animator animator;
 
     public void lockMovement(bool state) {
         lockedMovement = state;
     }
 
+    protected void resetFlip(Animator animator) {
+        Transform t = animator.transform;
+        t.localPosition = new Vector2(-Mathf.Abs(t.localPosition.x), t.localPosition.y);
+        t.localScale = new Vector2(Mathf.Abs(t.localScale.x), t.localScale.y);
+    }
+
+    protected void flip(Animator animator) {
+        Transform t = animator.transform;
+        t.localPosition = new Vector3(-t.localPosition.x, t.localPosition.y, t.localPosition.z);
+        t.localScale = new Vector3(-t.localScale.x, t.localScale.y, t.localScale.z);
+    }
+
     public void Damage(float amount) {
         health -= amount;
-
+        animator.SetTrigger("damaged");
         if (health <= 0) {
             Die();
         }

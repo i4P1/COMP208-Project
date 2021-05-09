@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Humanoids : Enemy
@@ -43,11 +45,11 @@ public class Humanoids : Enemy
     protected Vector2 findPlayer() {
         LayerMask enemyLayer = 1 << gameObject.layer;
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 100 /* Change */, Vector2.one, 1, playerLayerMask);
-        pc = hit.transform.gameObject.GetComponent<PlayerController>();
         if(hit.transform == null) return Vector2.zero;
+        pc = hit.transform.gameObject.GetComponent<PlayerController>();
         Vector2 direction = (hit.transform.position - transform.position).normalized;
         RaycastHit2D hit2 = Physics2D.Raycast(transform.position, direction, 100, ~enemyLayer);
-        if(hit.transform.gameObject == hit2.transform.gameObject)
+        if(hit.transform != null && hit.transform.gameObject == hit2.transform.gameObject)
             return direction;
         else
             return Vector2.zero;

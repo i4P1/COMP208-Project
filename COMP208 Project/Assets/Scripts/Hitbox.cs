@@ -25,7 +25,10 @@ public class Hitbox : MonoBehaviour {
     /// <param name="playerDir"> The player, given so that we can find it's direction</param>
     public void setPosAuto(bool playerDir) {
         if(playerDir) transform.localPosition = pos;
-        else transform.localPosition = pos * -1;
+        else { 
+            transform.localPosition = pos * -1;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
     }
 
     private void FixedUpdate() {
