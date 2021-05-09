@@ -93,7 +93,6 @@ Animator:
   m_GameObject: {fileID: 3304240472285681674}
   m_Enabled: 1
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c45ab045957b8d499039d153df0498b, type: 3}
   m_Name: 
@@ -121,8 +120,6 @@ Animator:
 --- !u!114 &4838086216620121828
 MonoBehaviour:
 =======
-=======
->>>>>>> Stashed changes
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: fb1a3b5c405fcc14f91708a2076d23f0, type: 2}
   m_CullingMode: 0
@@ -155,9 +152,6 @@ GameObject:
   m_IsActive: 1
 --- !u!224 &4838086216620121831
 RectTransform:
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

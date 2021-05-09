@@ -93,7 +93,6 @@ Animator:
   m_GameObject: {fileID: 1364580658863567117}
   m_Enabled: 1
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3534da26204ffe4eb34cb12c00b7b41, type: 3}
   m_Name: 
@@ -108,8 +107,6 @@ Animator:
     serializedVersion: 2
     m_Bits: 64
 =======
-=======
->>>>>>> Stashed changes
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 350268d8483e80e408680dd3d9fd894c, type: 2}
   m_CullingMode: 0
@@ -156,9 +153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 --- !u!50 &7447518590007183709
 Rigidbody2D:

@@ -14,9 +14,6 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     protected Animator animator;
 
-    [SerializeField]
-    protected Animator animator;
-
     public void lockMovement(bool state) {
         lockedMovement = state;
     }
