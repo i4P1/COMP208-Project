@@ -201,8 +201,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8246fba368da0aa4784d5ea6d06cd789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 60
   animator: {fileID: 2275679937380369759}
+  killboxLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  aggroRange: 14
   speed: 3
   playerLayerMask:
     serializedVersion: 2
@@ -218,6 +222,7 @@ MonoBehaviour:
   tpDashDelay: 0.65
   dashSpeed: 50
   dashTime: 0.35
+  aggroRange: 0
 --- !u!114 &6979919223959325163
 MonoBehaviour:
   m_ObjectHideFlags: 0

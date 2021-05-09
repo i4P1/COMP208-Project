@@ -6,11 +6,15 @@ public interface IMoveable {
 
 public class Enemy : MonoBehaviour {
     [SerializeField]
-    private float health;
+    private float health = 100;
     protected bool lockedMovement;
 
     [SerializeField]
     protected Animator animator;
+    [SerializeField]
+    private LayerMask killboxLayerMask;
+    [SerializeField]
+    protected float aggroRange = 14;
 
     public void lockMovement(bool state) {
         lockedMovement = state;
@@ -40,5 +44,13 @@ public class Enemy : MonoBehaviour {
     private void Die() {
         // Call animator
         Destroy(gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        Debug.Log("Enemy trigger");
+        if (Mathf.Pow(2, other.gameObject.layer) == killboxLayerMask) {
+            Debug.Log("Enemy dead");
+            Die();
+        }
     }
 }

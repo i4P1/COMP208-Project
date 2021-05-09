@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     private LayerMask groundLayerMask;
     [SerializeField]                                  
     private LayerMask playerLayerMask;
+    [SerializeField]
+    private LayerMask killboxLayerMask;
 
     private float playerSize;
     private PlayerInput input;
@@ -177,11 +179,11 @@ public class PlayerController : MonoBehaviour {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
         Vector2 destination = origin + (teleportDistance * direction);
 
-        for(float distance = teleportDistance;distance > 0;distance -= step) {
+        for (float distance = teleportDistance; distance > 0; distance -= step) {
             destination = origin + (direction * distance);
 
             // If the destination is empty then break from the loop to move there
-            if(Physics2D.CircleCast(destination, playerSize, Vector2.up, 0, ~playerLayerMask).collider == null) {
+            if (Physics2D.CircleCast(destination, playerSize, Vector2.up, 0, ~playerLayerMask).collider == null) {
                 break;
             }
         }
@@ -211,7 +213,7 @@ public class PlayerController : MonoBehaviour {
         health = Math.Min((health - amount), maxHealth);
         healthbar.SetHealth(health);
 
-        if(amount > 0)
+        if (amount > 0)
             animator.SetTrigger("takeDamage");
 
         if (health <= 0) {
@@ -221,5 +223,13 @@ public class PlayerController : MonoBehaviour {
 
     public void Die() {
         SceneManager.LoadScene(0);
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        Debug.Log("You trigger");
+        if (Mathf.Pow(2, other.gameObject.layer) == killboxLayerMask) {
+            Debug.Log("You dead");
+            Die();
+        }
     }
 }

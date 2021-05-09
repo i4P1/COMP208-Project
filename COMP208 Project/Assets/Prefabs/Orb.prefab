@@ -187,8 +187,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3534da26204ffe4eb34cb12c00b7b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 40
   animator: {fileID: 8904094160295369987}
+  killboxLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  aggroRange: 14
   damage: 40
   knockback: 800
   playerLayerMask:
@@ -208,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   nextWaypointDistance: 3
+  aggroRange: 14
 --- !u!114 &7447518590007183705
 MonoBehaviour:
   m_ObjectHideFlags: 0

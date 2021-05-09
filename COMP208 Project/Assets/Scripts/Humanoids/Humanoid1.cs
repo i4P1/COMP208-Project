@@ -6,9 +6,6 @@ public class Humanoid1 : Humanoids
 {
     [SerializeField]
     EnemyAttacks ea;
-
-    [SerializeField]
-    float agroRange;
     [SerializeField]
     float attackRange;
     [SerializeField]
@@ -60,7 +57,7 @@ public class Humanoid1 : Humanoids
             privVel = rb.velocity.x;
         }
         dir = findPlayer();
-        if(checkFloor() && !lockedMovement && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < agroRange) 
+        if(checkFloor() && !lockedMovement && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < aggroRange) 
             Move(new Vector2(dir.x, 0));
         else 
             Move(Vector2.zero);

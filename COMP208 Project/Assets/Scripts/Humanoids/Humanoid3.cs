@@ -98,7 +98,7 @@ public class Humanoid3 : Humanoids
         if(checkFloor() && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < attackRange) {
             atkSeq = StartCoroutine(attackSequence());
         }
-        else if(checkFloor() && !lockedMovement) {
+        else if(checkFloor() && !lockedMovement && (pc.transform.position - transform.position).magnitude < aggroRange) {
             Move(new Vector2(dir.x, 0));
         }
         else if(atkSeq == null)
