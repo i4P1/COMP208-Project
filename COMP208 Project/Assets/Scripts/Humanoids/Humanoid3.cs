@@ -20,8 +20,6 @@ public class Humanoid3 : Humanoids
     [SerializeField]
     float attackRange;
 
-    float privVel = 1;
-
     EnemyAttacks ea;
     [SerializeField]
     float aggroRange = 14;
@@ -46,22 +44,9 @@ public class Humanoid3 : Humanoids
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
         yield return new WaitForSeconds(dashDelay/2);
-
-        animator.SetTrigger("attack");
+        
         Vector3 temp = pc.transform.position;
-        float angle = Vector2.SignedAngle(transform.position, temp);
-        resetFlip(animator);
-        if(temp.x-transform.position.x >= 0) {
-            transform.rotation = Quaternion.Euler(0, 0, -angle);
-            privVel = 1;
-        }
-        else {
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-            Debug.Log("flipped");
-            flip(animator);
-            privVel = -1;
-        }
-
+        
         yield return new WaitForSeconds(dashDelay/2);
         
         rb.constraints = RigidbodyConstraints2D.None;
@@ -74,10 +59,6 @@ public class Humanoid3 : Humanoids
         yield return new WaitForSeconds(dashTime);
         rb.velocity = Vector2.zero;
         rb.gravityScale = tempg;
-
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-        lockMovement(false);
-
         endAttack();
     }
 
@@ -88,14 +69,6 @@ public class Humanoid3 : Humanoids
 
     // Update is called once per frame
     void Update() {
-
-        animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
-        if(rb.velocity.x != 0) {
-            if(privVel / Mathf.Abs(privVel) != rb.velocity.x / Mathf.Abs(rb.velocity.x))
-                flip(animator);
-            privVel = rb.velocity.x;
-        }
-
         dir = findPlayer();
         if(checkFloor() && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < attackRange) {
             atkSeq = StartCoroutine(attackSequence());

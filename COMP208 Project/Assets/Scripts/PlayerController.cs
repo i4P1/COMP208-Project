@@ -213,9 +213,6 @@ public class PlayerController : MonoBehaviour {
         health = Math.Min((health - amount), maxHealth);
         healthbar.SetHealth(health);
 
-        if(amount > 0)
-            animator.SetTrigger("takeDamage");
-
         if (health <= 0) {
             Die();
         }

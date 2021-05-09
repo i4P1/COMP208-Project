@@ -80,6 +80,7 @@ public class Attacks : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if(!attackLock) {
+            Debug.Log(attackQue[0] + ":" + attackQue[1]);
             switch(attackQue[0]) {
                 case AttackList.light1:
                     if(activeAttack != null) stopAttack();
@@ -145,6 +146,7 @@ public class Attacks : MonoBehaviour
             collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
             collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Enemy enemy in tempEnemies) {
+                Debug.Log(enemy.gameObject);
                 enemy.Damage(attackDamages[0]);
                 player.Hover(floatTime);
             }
@@ -307,6 +309,7 @@ public class Attacks : MonoBehaviour
 
     IEnumerator delayedCycle(float time) {
         yield return new WaitForSeconds(time);
+        Debug.Log("Cycling");
         queCycle();
     }
 
@@ -362,6 +365,7 @@ public class Attacks : MonoBehaviour
     IEnumerator lockAttackCR(float waitTime) {
         attackLock = true;
         yield return new WaitForSeconds(waitTime);
+        Debug.Log("Unlocked");
         attackLock = false;
     }
 

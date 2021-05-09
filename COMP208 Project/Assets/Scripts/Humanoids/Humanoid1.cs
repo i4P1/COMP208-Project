@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Humanoid1 : Humanoids
@@ -20,8 +18,6 @@ public class Humanoid1 : Humanoids
     float attackDamage;
     [SerializeField]
     GameObject prefabDamage;
-
-    float privVel = 1;
 
     Coroutine atkSeq;
 
@@ -45,7 +41,6 @@ public class Humanoid1 : Humanoids
     #region attacking
     private void startAttack(float? xMult) {
         ea.startAttack(attackDamage, xMult);
-        animator.SetTrigger("attack");
     }
 
     #endregion
@@ -53,19 +48,13 @@ public class Humanoid1 : Humanoids
     #region pathfinding
 
     private void Update() {
-        animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
-        if(rb.velocity.x != 0) {
-            if(privVel / Mathf.Abs(privVel) != rb.velocity.x / Mathf.Abs(rb.velocity.x))
-                flip(animator);
-            privVel = rb.velocity.x;
-        }
         dir = findPlayer();
         if(checkFloor() && !lockedMovement && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < agroRange) 
             Move(new Vector2(dir.x, 0));
         else 
             Move(Vector2.zero);
 
-        if ((pc.transform.position - transform.position).magnitude < attackRange && (Time.time - lastAttackTime) > attackCooldown + attackTime.x + attackTime.y) {
+        if ((pc.transform.position - transform.position).magnitude < attackRange && (Time.time - lastAttackTime) > attackCooldown) {
             lastAttackTime = Time.time;
 
             float? mult = null;

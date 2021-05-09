@@ -18,16 +18,11 @@ public class Humanoid2 : Humanoids
     Vector2 tpOffset;
 
     [SerializeField]
-    float tpDashDelay;
-
-    [SerializeField]
     float dashSpeed;
     [SerializeField]
     float dashTime;
     [SerializeField]
     float aggroRange = 14;
-
-    float privVel = 1;
 
     Coroutine atkSeq;
 
@@ -67,13 +62,8 @@ public class Humanoid2 : Humanoids
         transform.position = pos;
         #endregion
 
-        animator.SetTrigger("attack");
-        transform.rotation = Quaternion.Euler(0, 0, -90);
-        privVel = 1;
-        resetFlip(animator);
 
-
-        yield return new WaitForSeconds(tpDashDelay); //Change to appropriate waiting time
+        yield return new WaitForSeconds(0.5f); //Change to appropriate waiting time
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -87,9 +77,7 @@ public class Humanoid2 : Humanoids
         rb.velocity = Vector2.zero;
         rb.gravityScale = temp;
         #endregion
-
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-
+        
         lockedMovement = false;
         endAttack();
     }
@@ -100,14 +88,6 @@ public class Humanoid2 : Humanoids
     }
 
     private void Update() {
-
-        animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
-        if(rb.velocity.x != 0) {
-            if(privVel / Mathf.Abs(privVel) != rb.velocity.x / Mathf.Abs(rb.velocity.x))
-                flip(animator);
-            privVel = rb.velocity.x;
-        }
-
         dir = findPlayer();
         if(checkFloor() && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < tpDistance) {
             atkSeq = StartCoroutine(attackSequence());
