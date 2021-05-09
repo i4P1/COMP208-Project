@@ -23456,6 +23456,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5008809865576594711, guid: 99ba5274c5894304ea4b2f2a2e4fbff2,
         type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
+    - target: {fileID: 5008809865576594711, guid: 99ba5274c5894304ea4b2f2a2e4fbff2,
+        type: 3}
       propertyPath: bgCamera
       value: 
       objectReference: {fileID: 0}
@@ -25628,6 +25633,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 566699746563304692, guid: 96e2b5b7556ae094e8a8894c79caf721,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1283.3079
+      objectReference: {fileID: 0}
+    - target: {fileID: 566699746563304692, guid: 96e2b5b7556ae094e8a8894c79caf721,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 10.826019
+      objectReference: {fileID: 0}
+    - target: {fileID: 566699746563304692, guid: 96e2b5b7556ae094e8a8894c79caf721,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 37.624146
+      objectReference: {fileID: 0}
+    - target: {fileID: 566699746563304692, guid: 96e2b5b7556ae094e8a8894c79caf721,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -85.18944
+      objectReference: {fileID: 0}
     - target: {fileID: 7874412426037298747, guid: 96e2b5b7556ae094e8a8894c79caf721,
         type: 3}
       propertyPath: m_RootOrder
