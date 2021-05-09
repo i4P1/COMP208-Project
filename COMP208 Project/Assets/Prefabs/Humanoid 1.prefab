@@ -104,10 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb1046be2557744591a2eaf27beb1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  killBoxLayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   speed: 20
   playerLayerMask:
     serializedVersion: 2

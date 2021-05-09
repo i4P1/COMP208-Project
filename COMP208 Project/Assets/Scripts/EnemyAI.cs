@@ -13,6 +13,8 @@ public class EnemyAI : MonoBehaviour {
     private Rigidbody2D rb;
     private IMoveable controller;
     [SerializeField]
+    private Transform player;
+    [SerializeField]
     private float aggroRange = 14;
 
     private void Start() {

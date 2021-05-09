@@ -104,10 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c45ab045957b8d499039d153df0498b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  killBoxLayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   speed: 2
   playerLayerMask:
     serializedVersion: 2
@@ -123,7 +119,6 @@ MonoBehaviour:
   dashSpeed: 30
   dashTime: 1
   attackRange: 300
-  aggroRange: 14
 --- !u!114 &4838086216620121828
 MonoBehaviour:
   m_ObjectHideFlags: 0

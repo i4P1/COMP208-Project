@@ -6,7 +6,7 @@ public class Humanoid1 : Humanoids
     EnemyAttacks ea;
 
     [SerializeField]
-    float agroRange = 14;
+    float agroRange;
     [SerializeField]
     float attackRange;
     [SerializeField]
