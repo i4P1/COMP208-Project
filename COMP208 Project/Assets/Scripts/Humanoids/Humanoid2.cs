@@ -21,8 +21,6 @@ public class Humanoid2 : Humanoids
     float dashSpeed;
     [SerializeField]
     float dashTime;
-    [SerializeField]
-    float aggroRange = 14;
 
     Coroutine atkSeq;
 
@@ -92,7 +90,7 @@ public class Humanoid2 : Humanoids
         if(checkFloor() && atkSeq == null && pc != null && (pc.transform.position - transform.position).magnitude < tpDistance) {
             atkSeq = StartCoroutine(attackSequence());
         }
-        else if(checkFloor() && !lockedMovement && (pc.transform.position - transform.position).magnitude < aggroRange)
+        else if(checkFloor() && !lockedMovement)
             Move(new Vector2(dir.x, 0));
         else if(atkSeq == null)
             Move(Vector2.zero);

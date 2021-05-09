@@ -12,10 +12,6 @@ public class EnemyAI : MonoBehaviour {
     private Seeker seeker;
     private Rigidbody2D rb;
     private IMoveable controller;
-    [SerializeField]
-    private Transform player;
-    [SerializeField]
-    private float aggroRange = 14;
 
     private void Start() {
         seeker     = GetComponent<Seeker>();
@@ -51,18 +47,15 @@ public class EnemyAI : MonoBehaviour {
                 reachedEndOfPath = false;
             }
 
-            // Only move if the player is within its aggro range
-            if (path.GetTotalLength() < aggroRange) {
-                // Calculate the direction to the current waypoint and move in it
-                Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - rb.position).normalized;
-                controller.Move(direction);
+            // Calculate the direction to the current waypoint and move in it
+            Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - rb.position).normalized;
+            controller.Move(direction);
 
-                // Check if we're close enough to the waypoint to move onto the next one
-                float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+            // Check if we're close enough to the waypoint to move onto the next one
+            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-                if (distance < nextWaypointDistance) {
-                    currentWaypoint++;
-                }
+            if (distance < nextWaypointDistance) {
+                currentWaypoint++;
             }
         }
     }
