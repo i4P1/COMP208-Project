@@ -71,6 +71,7 @@ public class EnemyAttacks : MonoBehaviour
         foreach(PlayerController pl in collidedCreatures) {
             Debug.Log(pl.gameObject);
             pl.Damage(damage);
+            Debug.Log("Damaged Player");
         }
         yield return new WaitForEndOfFrame();
 
@@ -80,8 +81,8 @@ public class EnemyAttacks : MonoBehaviour
             List<PlayerController> tempEnemies = newPlayers(collidedCreatures, getPlayers(hitboxDamage.collidedObjects(playerLayerMask))); //Temparory list of the new un-checked enemies
             collidedCreatures.AddRange(tempEnemies); //Adding the new enemies to the total list to make sure no enemy is damaged twice.
             foreach(PlayerController pl in tempEnemies) {
-                Debug.Log(pl.gameObject);
                 pl.Damage(damage);
+                Debug.Log("Damaged Player");
             }
             yield return new WaitForEndOfFrame(); //Wait for the end of the frame to act again.
         }
