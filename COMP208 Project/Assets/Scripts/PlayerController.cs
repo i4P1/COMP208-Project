@@ -226,9 +226,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        Debug.Log("You trigger");
         if (other == killbox) {
-            Debug.Log("You dead");
             Die();
         }
     }

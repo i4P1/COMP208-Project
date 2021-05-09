@@ -128,10 +128,12 @@ public class Attacks : MonoBehaviour
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
             enemy.Damage(attackDamages[0]);
+            player.ResetDash();
             player.Hover(floatTime);
         }
         foreach(Projectile projectile in collidedBullets) {
             projectile.Deflect();
+            player.ResetDash();
             player.Hover(floatTime);
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
@@ -146,10 +148,12 @@ public class Attacks : MonoBehaviour
             collidedBullets.AddRange(tempProjectiles); //Adding the new projectile to the total list to make sure no projectile is deflected twice.
             foreach(Enemy enemy in tempEnemies) {
                 enemy.Damage(attackDamages[0]);
+                player.ResetDash();
                 player.Hover(floatTime);
             }
             foreach(Projectile projectile in tempProjectiles) {
                 projectile.Deflect();
+                player.ResetDash();
                 player.Hover(floatTime);
             }
             comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
@@ -194,11 +198,13 @@ public class Attacks : MonoBehaviour
         foreach(Enemy enemy in collidedCreatures) {
             Debug.Log(enemy.gameObject);
             enemy.Damage(attackDamages[0]);
+            player.ResetDash();
             player.Hover(floatTime);
         }
         foreach(Projectile projectile in collidedBullets) {
             Debug.Log(projectile.gameObject);
             projectile.Deflect();
+            player.ResetDash();
             player.Hover(floatTime);
         }
         comboCounter.updateComboCount(collidedCreatures.Count + collidedBullets.Count);
@@ -214,11 +220,13 @@ public class Attacks : MonoBehaviour
             foreach(Enemy enemy in tempEnemies) {
                 Debug.Log(enemy.gameObject);
                 enemy.Damage(attackDamages[0]);
+                player.ResetDash();
                 player.Hover(floatTime);
             }
             foreach(Projectile projectile in tempProjectiles) {
                 Debug.Log(projectile.gameObject);
                 projectile.Deflect();
+                player.ResetDash();
                 player.Hover(floatTime);
             }
             comboCounter.updateComboCount(tempEnemies.Count + tempProjectiles.Count); //Update the combo counter with the new collided creatures.
