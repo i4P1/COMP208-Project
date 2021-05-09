@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]                                  
     private LayerMask playerLayerMask;
     [SerializeField]
-    private LayerMask killboxLayerMask;
+    private BoxCollider2D killbox;
 
     private float playerSize;
     private PlayerInput input;
@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other) {
         Debug.Log("You trigger");
-        if (Mathf.Pow(2, other.gameObject.layer) == killboxLayerMask) {
+        if (other == killbox) {
             Debug.Log("You dead");
             Die();
         }
