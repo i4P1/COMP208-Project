@@ -231,22 +231,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   health: 0
   killBoxLayerMask:
     serializedVersion: 2
     m_Bits: 2048
   speed: 5
 =======
+=======
+>>>>>>> Stashed changes
   prefabDamage: {fileID: 584063948440061180, guid: 263648bfb5f57214fbfc1bf1ed352c27,
     type: 3}
   prefabDeflect: {fileID: 584063948440061180, guid: 263648bfb5f57214fbfc1bf1ed352c27,
     type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
   projectileLayerMask:
     serializedVersion: 2
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     m_Bits: 8
   attackDamage: 40
@@ -257,6 +264,10 @@ MonoBehaviour:
   dashSpeed: 50
   dashTime: 2
   aggroRange: 14
+=======
+    m_Bits: 512
+  attackTime: {x: 0.1, y: 1}
+>>>>>>> Stashed changes
 =======
     m_Bits: 512
   attackTime: {x: 0.1, y: 1}

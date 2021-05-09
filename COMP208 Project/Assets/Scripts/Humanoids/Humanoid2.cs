@@ -29,6 +29,8 @@ public class Humanoid2 : Humanoids
 
     float privVel = 1;
 
+    float privVel = 1;
+
     Coroutine atkSeq;
 
     #region setup
