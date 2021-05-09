@@ -470,6 +470,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -1135,6 +1140,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 708179688}
     m_Modifications:
+    - target: {fileID: 6979919223959325160, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 6979919223959325161, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
         type: 3}
       propertyPath: m_Name
@@ -1930,6 +1940,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -2495,6 +2510,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 456502057}
     m_Modifications:
+    - target: {fileID: 6979919223959325160, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 6979919223959325161, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
         type: 3}
       propertyPath: m_Name
@@ -3875,6 +3895,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -4681,6 +4706,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 708179688}
     m_Modifications:
+    - target: {fileID: 6979919223959325160, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 6979919223959325161, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
         type: 3}
       propertyPath: m_Name
@@ -5355,6 +5385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: showGraphs
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486555969746701678, guid: 3cfb83ef8e8a60e4797b8949a098a392,
+        type: 3}
+      propertyPath: logPathResults
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4486555969746701678, guid: 3cfb83ef8e8a60e4797b8949a098a392,
         type: 3}
@@ -7037,6 +7072,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -8890,6 +8930,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -9823,6 +9868,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -10283,6 +10333,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -10483,6 +10538,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -10688,6 +10748,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -11971,6 +12036,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -12091,6 +12161,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -13806,6 +13881,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -14591,6 +14671,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -15259,6 +15344,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1375131318}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1375882744 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 566699746563304692, guid: 96e2b5b7556ae094e8a8894c79caf721,
+    type: 3}
+  m_PrefabInstance: {fileID: 6497327789712726420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1380832462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15546,6 +15637,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 873717377195426534, guid: 35fa9f8133026a64582338b7759fdfe4,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35fa9f8133026a64582338b7759fdfe4, type: 3}
 --- !u!224 &1411549111 stripped
@@ -17971,6 +18067,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 708179688}
     m_Modifications:
+    - target: {fileID: 6979919223959325160, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 6979919223959325161, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
         type: 3}
       propertyPath: m_Name
@@ -20439,6 +20540,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -21489,6 +21595,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 873717377195426534, guid: 35fa9f8133026a64582338b7759fdfe4,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35fa9f8133026a64582338b7759fdfe4, type: 3}
 --- !u!224 &1883691770 stripped
@@ -21504,6 +21615,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1061331785}
     m_Modifications:
+    - target: {fileID: 7447518590007183708, guid: 027becc9282422e408507eb1d654a2c2,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 7447518590007183710, guid: 027becc9282422e408507eb1d654a2c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -22483,6 +22599,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 708179688}
     m_Modifications:
+    - target: {fileID: 6979919223959325160, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 6979919223959325161, guid: a85fbcf1ef3b81d4e88ab8344b3ac1a5,
         type: 3}
       propertyPath: m_Name
@@ -24961,6 +25082,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid 3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4838086216620121829, guid: 85976e0499527224e9f29315027a789b,
+        type: 3}
+      propertyPath: killbox
+      value: 
+      objectReference: {fileID: 1375882744}
     - target: {fileID: 4838086216620121831, guid: 85976e0499527224e9f29315027a789b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -25570,7 +25696,7 @@ PrefabInstance:
     - target: {fileID: 8335885003676348852, guid: 96e2b5b7556ae094e8a8894c79caf721,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e2b5b7556ae094e8a8894c79caf721, type: 3}

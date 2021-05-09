@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     protected Animator animator;
     [SerializeField]
-    private LayerMask killboxLayerMask;
+    private BoxCollider2D killbox;
     [SerializeField]
     protected float aggroRange = 14;
 
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other) {
         Debug.Log("Enemy trigger");
-        if (Mathf.Pow(2, other.gameObject.layer) == killboxLayerMask) {
+        if (other == killbox) {
             Debug.Log("Enemy dead");
             Die();
         }
